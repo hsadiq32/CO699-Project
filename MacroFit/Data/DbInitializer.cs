@@ -8,7 +8,7 @@ namespace MacroFit.Data
     {
         public static void Initialize(MacroFitContext context)
         {
-            if (context.Users.Any())
+            if (context.Accounts.Any())
             {
                 
             }
