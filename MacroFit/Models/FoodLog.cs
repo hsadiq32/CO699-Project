@@ -11,7 +11,6 @@
         // Navigation properties
 
         public Food Food { get; set; } // Link to Food
-
         public User User { get; set; } // Singular name for navigation property 
 
     }
