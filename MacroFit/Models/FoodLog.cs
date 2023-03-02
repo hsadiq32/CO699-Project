@@ -31,7 +31,7 @@ namespace MacroFit.Models
 
         [Required(ErrorMessage = "Account is required")]
         [Display(Name = "Account")]
-        public Account Account { get; set; } // Singular name for navigation property 
+        public User Account { get; set; } // Singular name for navigation property 
     }
 
     public enum MealType

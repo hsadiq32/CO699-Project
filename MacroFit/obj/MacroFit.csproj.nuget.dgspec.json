@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Haroon\\Documents\\GitHub\\CO699-Project\\MacroFit\\MacroFit.csproj": {}
+    "C:\\Users\\Haroon\\Documents\\GitHub\\CO699-Project\\New\\MacroFit\\MacroFit.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Haroon\\Documents\\GitHub\\CO699-Project\\MacroFit\\MacroFit.csproj": {
+    "C:\\Users\\Haroon\\Documents\\GitHub\\CO699-Project\\New\\MacroFit\\MacroFit.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Haroon\\Documents\\GitHub\\CO699-Project\\MacroFit\\MacroFit.csproj",
+        "projectUniqueName": "C:\\Users\\Haroon\\Documents\\GitHub\\CO699-Project\\New\\MacroFit\\MacroFit.csproj",
         "projectName": "MacroFit",
-        "projectPath": "C:\\Users\\Haroon\\Documents\\GitHub\\CO699-Project\\MacroFit\\MacroFit.csproj",
+        "projectPath": "C:\\Users\\Haroon\\Documents\\GitHub\\CO699-Project\\New\\MacroFit\\MacroFit.csproj",
         "packagesPath": "C:\\Users\\Haroon\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Haroon\\Documents\\GitHub\\CO699-Project\\MacroFit\\obj\\",
+        "outputPath": "C:\\Users\\Haroon\\Documents\\GitHub\\CO699-Project\\New\\MacroFit\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -45,11 +45,15 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
-            "Faker.Data": {
-              "target": "Package",
-              "version": "[2.0.1, )"
-            },
             "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.10, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.14, )"
+            },
+            "Microsoft.AspNetCore.Identity.UI": {
               "target": "Package",
               "version": "[6.0.14, )"
             },
