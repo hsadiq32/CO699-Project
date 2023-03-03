@@ -10,42 +10,37 @@ using MacroFit.Models;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
 
-namespace MacroFit.Pages
+namespace MacroFit.Pages.Users
 {
     public class IndexModel : PageModel
     {
         private readonly MacroFit.Data.MacroFitContext _context;
-        public bool LoginCheck = false;
+
         public IndexModel(MacroFit.Data.MacroFitContext context)
         {
             _context = context;
         }
 
-        public IList<User> UserDetails { get;set; } = default!;
+        public IList<IdentityUser> UserDetails { get;set; } = default!;
 
         public async Task<IActionResult> OnGetAsync()
         {
             var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             if (userId == null)
             {
-                return Page();
+                return NotFound();
             }
-            else {
-                var user = await _context.Accounts
-                    .Where(us => us.Id == userId)
-                    .ToListAsync();
 
-                if (user == null)
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    UserDetails = user;
-                    LoginCheck = true;
+            var user = await _context.Users
+                .Where(us => us.Id == userId)
+                .ToListAsync();
 
-                }
+            if (user == null)
+            {
+                return NotFound();
             }
+
+            UserDetails = user;
             return Page();
         }
     }

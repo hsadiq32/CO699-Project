@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Haroon\\Documents\\GitHub\\CO699-Project\\New\\MacroFit\\MacroFit.csproj": {}
+    "C:\\Users\\Haroon\\Documents\\GitHub\\CO699-Project\\MacroFit\\MacroFit.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Haroon\\Documents\\GitHub\\CO699-Project\\New\\MacroFit\\MacroFit.csproj": {
+    "C:\\Users\\Haroon\\Documents\\GitHub\\CO699-Project\\MacroFit\\MacroFit.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Haroon\\Documents\\GitHub\\CO699-Project\\New\\MacroFit\\MacroFit.csproj",
+        "projectUniqueName": "C:\\Users\\Haroon\\Documents\\GitHub\\CO699-Project\\MacroFit\\MacroFit.csproj",
         "projectName": "MacroFit",
-        "projectPath": "C:\\Users\\Haroon\\Documents\\GitHub\\CO699-Project\\New\\MacroFit\\MacroFit.csproj",
+        "projectPath": "C:\\Users\\Haroon\\Documents\\GitHub\\CO699-Project\\MacroFit\\MacroFit.csproj",
         "packagesPath": "C:\\Users\\Haroon\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Haroon\\Documents\\GitHub\\CO699-Project\\New\\MacroFit\\obj\\",
+        "outputPath": "C:\\Users\\Haroon\\Documents\\GitHub\\CO699-Project\\MacroFit\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

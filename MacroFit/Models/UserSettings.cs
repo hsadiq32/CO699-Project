@@ -52,8 +52,11 @@ namespace MacroFit.Models
 
     public enum DashboardView
     {
+        [Display(Name = "View 1")]
         View1,
+        [Display(Name = "View 2")]
         View2,
+        [Display(Name = "View 3")]
         View3
     }
 
@@ -68,8 +71,11 @@ namespace MacroFit.Models
 
     public enum GoalType
     {
+        [Display(Name = "Lose Weight")]
         LoseWeight,
+        [Display(Name = "Maintain Weight")]
         MaintainWeight,
+        [Display(Name = "Gain Weight")]
         GainWeight
     }
 }

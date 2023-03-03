@@ -1,10 +1,13 @@
 ﻿@page
-@model IndexModel
-@{
-    ViewData["Title"] = "Home page";
+@model MacroFit.Pages.IndexModel
+@if (Model.LoginCheck)
+{
+    <p>Welcome, @Model.UserDetails[0].FirstName!</p><br>
+    <p>Last Name: @Model.UserDetails[0].LastName</p><br>
+    <p>DOB: @Model.UserDetails[0].DateOfBirth</p>
+    <br>
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+else
+{
+    <partial name="_IndexPartial" />
+}

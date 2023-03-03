@@ -1,0 +1,90 @@
+﻿@page
+@model MacroFit.Pages.Users.Settings.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserSettings[0].DarkModeToggle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserSettings[0].DashboardView)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserSettings[0].AutoGoal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserSettings[0].MetricToggle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserSettings[0].ActivityLevel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserSettings[0].GoalType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserSettings[0].CalorieGoal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserSettings[0].CarbohydratesPercentage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserSettings[0].ProteinPercentage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserSettings[0].FatPercentage)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.UserSettings) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DarkModeToggle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DashboardView)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AutoGoal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MetricToggle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActivityLevel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GoalType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CalorieGoal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CarbohydratesPercentage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProteinPercentage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FatPercentage)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

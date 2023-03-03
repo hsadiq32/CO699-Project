@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "zhClSU8wmJ3xa0+wgNASFxHxOHo0JcTRGp1SCjdHAvcmUBIbGDE/CrYLgqmc/XC+Dki3ehA+V+FMhAhVKe13qw==",
+  "dgSpecHash": "XN1+HL/F0gaiCho8zpUSdNzZMYlQKR+b3kvjukmkWz6IdY1Vs5ZHXf0epVH2lICjADNjZiIaSPAovNvktpXltA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Haroon\\Documents\\GitHub\\CO699-Project\\New\\MacroFit\\MacroFit.csproj",
+  "projectFilePath": "C:\\Users\\Haroon\\Documents\\GitHub\\CO699-Project\\MacroFit\\MacroFit.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Haroon\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Haroon\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",

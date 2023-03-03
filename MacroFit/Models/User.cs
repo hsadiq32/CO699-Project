@@ -6,7 +6,6 @@ namespace MacroFit.Models
 {
     public class User : IdentityUser // Singular name for entity class
     {
-        public int Id { get; set; } // PascalCase for property names
 
         [Required(ErrorMessage = "First name is required")] // This attribute indicates that the property is required and specifies the error message
         [Display(Name = "First Name")]
