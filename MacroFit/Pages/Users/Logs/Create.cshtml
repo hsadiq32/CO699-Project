@@ -1,5 +1,6 @@
 ﻿@page
-@model MacroFit.Pages.Foods.CreateModel
+@using MacroFit.Models
+@model MacroFit.Pages.Users.Logs.CreateModel
 
 @{
     ViewData["Title"] = "Create";
@@ -7,24 +8,37 @@
 
 <h1>Create</h1>
 
-@if (ViewData.ContainsKey("Errors"))
-{
-    <div class="alert alert-danger">
-        <ul>
-            @foreach (var error in (List<string>)ViewData["Errors"])
-            {
-                <li>@error</li>
-            }
-        </ul>
-    </div>
-}
-
-<h4>Food</h4>
+<h4>FoodLog</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <h1>FoodLog</h1>
+            <div class="form-group">
+                <label asp-for="FoodLog.DateTime" class="control-label"></label>
+                <input asp-for="FoodLog.DateTime" class="form-control" />
+                <span asp-validation-for="FoodLog.DateTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FoodLog.Type" class="control-label"></label>
+                <select asp-for="FoodLog.Type" asp-items="Html.GetEnumSelectList<MealType>()" class="form-control"></select>
+                <span asp-validation-for="FoodLog.Type" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FoodLog.HungerLevel" class="control-label"></label>
+                <select asp-for="FoodLog.HungerLevel" asp-items="Html.GetEnumSelectList<HungerLevel>()" class="form-control"></select>
+                <span asp-validation-for="FoodLog.HungerLevel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FoodLog.Amount" class="control-label"></label>
+                <input asp-for="FoodLog.Amount" class="form-control" />
+                <span asp-validation-for="FoodLog.Amount" class="text-danger"></span>
+            </div>
+
+            <h1>Food</h1>
+
             <div class="form-group">
                 <label asp-for="Food.Name" class="control-label"></label>
                 <input asp-for="Food.Name" class="form-control" />
@@ -100,9 +114,7 @@
                 <input asp-for="FoodUnit.GramsConversion" class="form-control" />
                 <span asp-validation-for="FoodUnit.GramsConversion" class="text-danger"></span>
             </div>
-
-
-                        <div class="form-group">
+            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
