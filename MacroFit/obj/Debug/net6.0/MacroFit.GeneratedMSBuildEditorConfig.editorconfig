@@ -67,6 +67,46 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Haroon/Documents/GitHub/CO699-Project/MacroFit/Pages/Foods/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRm9vZHNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Haroon/Documents/GitHub/CO699-Project/MacroFit/Pages/Foods/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRm9vZHNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Haroon/Documents/GitHub/CO699-Project/MacroFit/Pages/Foods/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRm9vZHNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Haroon/Documents/GitHub/CO699-Project/MacroFit/Pages/Foods/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRm9vZHNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Haroon/Documents/GitHub/CO699-Project/MacroFit/Pages/Foods/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRm9vZHNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Haroon/Documents/GitHub/CO699-Project/MacroFit/Pages/Foods/Units/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRm9vZHNcVW5pdHNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Haroon/Documents/GitHub/CO699-Project/MacroFit/Pages/Foods/Units/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRm9vZHNcVW5pdHNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Haroon/Documents/GitHub/CO699-Project/MacroFit/Pages/Foods/Units/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRm9vZHNcVW5pdHNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Haroon/Documents/GitHub/CO699-Project/MacroFit/Pages/Foods/Units/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRm9vZHNcVW5pdHNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Haroon/Documents/GitHub/CO699-Project/MacroFit/Pages/Foods/Units/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRm9vZHNcVW5pdHNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Haroon/Documents/GitHub/CO699-Project/MacroFit/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -85,10 +125,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Haroon/Documents/GitHub/CO699-Project/MacroFit/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Haroon/Documents/GitHub/CO699-Project/MacroFit/Pages/Users/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlcnNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Haroon/Documents/GitHub/CO699-Project/MacroFit/Pages/Users/Settings/Create.cshtml]
