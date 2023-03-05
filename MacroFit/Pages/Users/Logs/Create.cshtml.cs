@@ -58,9 +58,9 @@ namespace MacroFit.Pages.Users.Logs
 
 
             var existingFoodUnit = await _context.FoodUnits.FirstOrDefaultAsync(
-    fu => fu.Name == FoodUnit.Name &&
-          fu.SymbolName == FoodUnit.SymbolName &&
-          fu.GramsConversion == FoodUnit.GramsConversion);
+                fu => fu.Name == FoodUnit.Name &&
+                fu.SymbolName == FoodUnit.SymbolName &&
+                fu.GramsConversion == FoodUnit.GramsConversion);
 
             // Use the existing FoodUnit or create a new one
             var foodUnit = existingFoodUnit ?? new FoodUnit

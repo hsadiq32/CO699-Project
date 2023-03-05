@@ -28,16 +28,6 @@ namespace MacroFit.Models
         [Display(Name = "Gender")]
         public Gender Gender { get; set; }
 
-        [Required(ErrorMessage = "Height is required")]
-        [Display(Name = "Height")]
-        [Range(0.5, 3, ErrorMessage = "Height must be between 0.5 and 3.0 meters")] // This attribute validates that the value is within a specified range and specifies the error message
-        public double Height { get; set; } // Double type for decimal numbers
-
-        [Required(ErrorMessage = "Weight is required")]
-        [Display(Name = "Weight")]
-        [Range(1, 500, ErrorMessage = "Weight must be between 1 and 500 kilograms")]
-        public double Weight { get; set; }
-
         // Navigation properties
         public UserSettings UserSettings { get; set; }  // Singular name for navigation property 
 

@@ -4,6 +4,7 @@ using MacroFit.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MacroFit.Migrations
 {
     [DbContext(typeof(MacroFitContext))]
-    partial class MacroFitContextModelSnapshot : ModelSnapshot
+    [Migration("20230305005234_user-data_change")]
+    partial class userdata_change
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -288,9 +290,6 @@ namespace MacroFit.Migrations
                         .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
-
-                    b.Property<double>("Height")
-                        .HasColumnType("float");
 
                     b.Property<byte[]>("ProgressImage")
                         .IsRequired()
@@ -571,6 +570,9 @@ namespace MacroFit.Migrations
 
                     b.Property<int>("Gender")
                         .HasColumnType("int");
+
+                    b.Property<double>("Height")
+                        .HasColumnType("float");
 
                     b.Property<string>("LastName")
                         .IsRequired()
