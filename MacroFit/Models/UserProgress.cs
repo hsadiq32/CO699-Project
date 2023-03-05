@@ -26,10 +26,7 @@ namespace MacroFit.Models
         public double BodyFatPercentage { get; set; }
 
         [Display(Name = "Progress Image")]
-        [DataType(DataType.Upload)]
-        [AllowedExtensions(new[] { ".jpg", ".jpeg", ".png" }, ErrorMessage = "Only jpg or png files are allowed.")]
-        [MaxFileSize(10 * 1024 * 1024, ErrorMessage = "The maximum allowed file size is 10 MB.")]
-        public byte[] ProgressImage { get; set; }
+        public string ProgressImage { get; set; }
 
 
         [MaxLength(250, ErrorMessage = "Description cannot exceed 250 characters.")]
@@ -48,56 +45,5 @@ namespace MacroFit.Models
     //[AllowedExtensions(new string[] { ".jpg", ".png" }, ErrorMessage = "Only JPG and PNG file types are allowed.")]
     //public IFormFile ImageFile { get; set; }
 
-    public class MaxFileSizeAttribute : ValidationAttribute
-    {
-        private readonly int _maxFileSize;
-
-        public MaxFileSizeAttribute(int maxFileSize)
-        {
-            _maxFileSize = maxFileSize;
-        }
-
-        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
-        {
-            if (value is not IFormFile file)
-            {
-                return ValidationResult.Success;
-            }
-
-            if (file.Length > _maxFileSize)
-            {
-                return new ValidationResult(ErrorMessage);
-            }
-
-            return ValidationResult.Success;
-        }
-    }
-
-    public class AllowedExtensionsAttribute : ValidationAttribute
-    {
-        private readonly string[] _extensions;
-
-        public AllowedExtensionsAttribute(string[] extensions)
-        {
-            _extensions = extensions;
-        }
-
-        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
-        {
-            if (value is not IFormFile file)
-            {
-                return ValidationResult.Success;
-            }
-
-            var extension = System.IO.Path.GetExtension(file.FileName);
-
-            if (!_extensions.Contains(extension.ToLower()))
-            {
-                return new ValidationResult(ErrorMessage);
-            }
-
-            return ValidationResult.Success;
-        }
-    }
 
 }

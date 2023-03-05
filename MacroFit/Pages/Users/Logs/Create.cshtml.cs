@@ -37,10 +37,6 @@ namespace MacroFit.Pages.Users.Logs
 
         public async Task<IActionResult> OnPostAsync()
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    return Page();
-            //}
             var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             if (userId == null)
             {
@@ -54,9 +50,6 @@ namespace MacroFit.Pages.Users.Logs
             }
 
             FoodLog.Account = user;
-
-
-
             var existingFoodUnit = await _context.FoodUnits.FirstOrDefaultAsync(
                 fu => fu.Name == FoodUnit.Name &&
                 fu.SymbolName == FoodUnit.SymbolName &&
@@ -72,6 +65,11 @@ namespace MacroFit.Pages.Users.Logs
 
             // Set the FoodUnit property of the Food object
             Food.FoodUnit = foodUnit;
+
+            //if (!ModelState.IsValid)
+            //{
+            //    return Page();
+            //}
 
 
             FoodLog.Food = Food;

@@ -1,0 +1,66 @@
+﻿@page
+@model MacroFit.Pages.Users.Progress.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserProgress[0].Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserProgress[0].Weight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserProgress[0].Height)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserProgress[0].BodyFatPercentage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserProgress[0].ProgressImage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserProgress[0].Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.UserProgress) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Weight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Height)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BodyFatPercentage)
+            </td>
+                <td>
+                    <img class="thumbnail-image" src="/images/@Html.DisplayFor(modelItem => item.ProgressImage)" style="height: 132px;width: 100px;">
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
