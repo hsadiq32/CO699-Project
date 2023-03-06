@@ -1,6 +1,8 @@
-﻿using System.Net.Http;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using MacroFit.Data;
 using MacroFit.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -22,17 +24,9 @@ namespace MacroFit.API
             _context = context;
         }
 
-
-        // GET: api/scan
-        [HttpGet]
-        public ActionResult<string[]> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
         // GET: api/scan/{barcode}
         [HttpGet("{code}")]
-        public async Task<ActionResult<Food>> GetAsync(string code)
+        public async Task<IActionResult> GetAsync(string code)
         {
             // Check if the given barcode exists in the Food database
             var existingFood = await _context.Foods
@@ -42,13 +36,26 @@ namespace MacroFit.API
             if (existingFood != null)
             {
                 // If the barcode is found in the Food database, return the corresponding Food object.
-                return existingFood;
+                return Ok(new FoodResponse 
+                {
+                    Status = 200,
+                    Barcode = existingFood.Barcode,
+                    FoodResponseDetails = new FoodResponseDetails
+                    {
+                        Id = existingFood.Id,
+                        Name = existingFood.Name,
+                        Carbohydrates = existingFood.Carbohydrates,
+                        Protein = existingFood.Protein,
+                        Fat = existingFood.Fat,
+                    }
+                });
             }
             else
             {
                 // If the barcode is not found in the Food database, query the open food facts api to check if the barcode is valid.
                 var url = $"https://world.openfoodfacts.org/api/v0/product/{code}";
                 var response = await _httpClient.GetAsync(url);
+
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -67,12 +74,12 @@ namespace MacroFit.API
                             Protein = product.ProductData.Nutriments.proteins_100g,
                             Carbohydrates = product.ProductData.Nutriments.carbohydrates_100g,
                             Fat = product.ProductData.Nutriments.fat_100g,
-                            FatSat = product.ProductData.Nutriments.saturated_fat_100g ,
+                            FatSat = product.ProductData.Nutriments.saturated_fat_100g,
                             Fibre = product.ProductData.Nutriments.fiber_100g,
                             Sugar = product.ProductData.Nutriments.sugars_100g,
                             Sodium = product.ProductData.Nutriments.sodium_100g,
-                            FoodUnit = new FoodUnit 
-                            { 
+                            FoodUnit = new FoodUnit
+                            {
                                 Name = "Grams",
                                 SymbolName = "g",
                                 GramsConversion = 100
@@ -81,39 +88,58 @@ namespace MacroFit.API
 
                         _context.Foods.Add(newFood);
                         await _context.SaveChangesAsync();
-
-                        return newFood;
+                        return Ok(new FoodResponse
+                        {
+                            Status = 200,
+                            Barcode = newFood.Barcode,
+                            FoodResponseDetails = new FoodResponseDetails
+                            {
+                                Id = newFood.Id,
+                                Name = newFood.Name,
+                                Carbohydrates = newFood.Carbohydrates,
+                                Protein = newFood.Protein,
+                                Fat = newFood.Fat,
+                            }
+                        });
                     }
                     else
                     {
                         // If the barcode is not valid, return an error message.
-                        return NotFound($"Barcode {code} is not valid.");
+                        return Ok(new FoodResponse
+                        {
+                            Status = 400,
+                            Barcode = code,
+                            Message = "Barcode not Found"
+                        });
                     }
                 }
                 else
                 {
-                    throw new Exception($"Failed to get product status. Status code: {response.StatusCode}. Reason: {response.ReasonPhrase}");
+                    return Ok(new FoodResponse
+                    {
+                        Status = 500,
+                        Barcode = code,
+                        Message = $"Failed to get product status. Status code: {response.StatusCode}. Reason: {response.ReasonPhrase}",
+                    });
                 }
             }
         }
 
-
-        // POST: api/scan
-        [HttpPost]
-        public void Post([FromBody] string value)
+        private class FoodResponse
         {
+            public int Status { get; set; } = 0;
+            public string Message { get; set; } = "Barcode Found";
+            public string Barcode { get; set; }
+            public FoodResponseDetails FoodResponseDetails { get; set; }
         }
 
-        // PUT: api/scan/{id}
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        private class FoodResponseDetails
         {
-        }
-
-        // DELETE: api/scan/{id}
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+            public double Carbohydrates { get; set; }
+            public double Protein { get; set; }
+            public double Fat { get; set; }
         }
 
         private class ProductResponse
