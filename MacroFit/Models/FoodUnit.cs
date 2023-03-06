@@ -17,7 +17,7 @@ namespace MacroFit.Models
         public string SymbolName { get; set; }
 
         [Display(Name = "Grams Conversion")]
-        [Range(0.01, 10000.0, ErrorMessage = "The Grams Conversion field must be between {1}g and {2}g.")]
+        [Range(0.0001, 10000.0, ErrorMessage = "The Grams Conversion field must be between {1}g and {2}g.")]
         public double GramsConversion { get; set; } = 0;
     }
 

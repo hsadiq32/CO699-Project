@@ -70,7 +70,76 @@ namespace MacroFit.Data
                 context.Accounts.AddRange(users);
                 context.SaveChanges();
             }
+
+            // Seed food units
+            if (!context.FoodUnits.Any())
+            {
+                var units = new List<FoodUnit>
+                {
+                    new FoodUnit
+                    {
+                        Name = "Grams",
+                        SymbolName = "g",
+                        GramsConversion = 100
+                    },
+                    new FoodUnit
+                    {
+                        Name = "Kilograms",
+                        SymbolName = "kg",
+                        GramsConversion = 1000
+                    },
+                    new FoodUnit
+                    {
+                        Name = "Milligrams",
+                        SymbolName = "mg",
+                        GramsConversion = 0.1
+                    },
+                    new FoodUnit
+                    {
+                        Name = "Litres",
+                        SymbolName = "L",
+                        GramsConversion = 1000
+                    },
+                    new FoodUnit
+                    {
+                        Name = "Milk Millilitres",
+                        SymbolName = "ml",
+                        GramsConversion = 1
+                    },
+                    new FoodUnit
+                    {
+                        Name = "Milk Litres",
+                        SymbolName = "L",
+                        GramsConversion = 1000
+                    },
+                    new FoodUnit
+                    {
+                        Name = "Ounces",
+                        SymbolName = "oz",
+                        GramsConversion = 28.3495
+                    },
+                    new FoodUnit
+                    {
+                        Name = "Pounds",
+                        SymbolName = "lb",
+                        GramsConversion = 453.592
+                    },
+                    new FoodUnit
+                    {
+                        Name = "Tablespoon",
+                        SymbolName = "tbsp",
+                        GramsConversion = 14.7868
+                    },
+                    new FoodUnit
+                    {
+                        Name = "Teaspoon",
+                        SymbolName = "tsp",
+                        GramsConversion = 4.92892
+                    }
+                };
+                context.FoodUnits.AddRange(units);
+                context.SaveChanges();
+            }
         }
     }
-
 }

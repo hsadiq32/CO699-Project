@@ -21,7 +21,7 @@ namespace MacroFit.Models
 
         [Required(ErrorMessage = "Calories are required.")]
         [Display(Name = "Calories")]
-        public int Calories { get; set; }
+        public double Calories { get; set; }
 
         [Required(ErrorMessage = "Protein is required.")]
         [Display(Name = "Protein")]
