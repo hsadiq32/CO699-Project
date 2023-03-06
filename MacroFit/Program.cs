@@ -1,4 +1,6 @@
 using MacroFit.Data;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -48,3 +50,5 @@ app.UseAuthorization();
 app.MapRazorPages();
 
 app.Run();
+
+

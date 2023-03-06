@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "pI+toyhzlo1Q9awgtfV7wsqOQ2Wd+b1k93lNMgX9uVY=",
+  "Hash": "XQiMnfZ5QHI4CbdDhWFfgVK6yCe6xj6HEnLxxxObeOk=",
   "Source": "MacroFit",
   "BasePath": "_content/MacroFit",
   "Mode": "Default",
@@ -1105,12 +1105,12 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
-      "Identity": "C:\\Users\\Haroon\\Documents\\GitHub\\CO699-Project\\MacroFit\\wwwroot\\js\\site.js",
+      "Identity": "C:\\Users\\Haroon\\Documents\\GitHub\\CO699-Project\\MacroFit\\wwwroot\\js\\html5-qrcode.min.js",
       "SourceId": "MacroFit",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Haroon\\Documents\\GitHub\\CO699-Project\\MacroFit\\wwwroot\\",
       "BasePath": "_content/MacroFit",
-      "RelativePath": "js/site.js",
+      "RelativePath": "js/html5-qrcode.min.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1119,7 +1119,24 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\site.js"
+      "OriginalItemSpec": "wwwroot\\js\\html5-qrcode.min.js"
+    },
+    {
+      "Identity": "C:\\Users\\Haroon\\Documents\\GitHub\\CO699-Project\\MacroFit\\wwwroot\\js\\scanner.js",
+      "SourceId": "MacroFit",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Haroon\\Documents\\GitHub\\CO699-Project\\MacroFit\\wwwroot\\",
+      "BasePath": "_content/MacroFit",
+      "RelativePath": "js/scanner.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\scanner.js"
     },
     {
       "Identity": "C:\\Users\\Haroon\\Documents\\GitHub\\CO699-Project\\MacroFit\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
