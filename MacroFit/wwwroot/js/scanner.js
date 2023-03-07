@@ -1,67 +1,76 @@
-﻿// Create a new Html5Qrcode object
-const html5QrCode = new Html5Qrcode("reader");
+﻿const html5QrCode = new Html5Qrcode("reader");
+let scannedBarcodes = [];
 
-// Define the success callback function
-const qrCodeSuccessCallback = (decodedText, decodedResult) => {
-    // Check if the decoded text is a food barcode
-    let barcodeRegex = /^5449\d{9}$/;
-    if (barcodeRegex.test(decodedText)) {
-        // Check if the barcode is already scanned
-        if (scannedBarcodes.has(decodedText)) {
-            // Add the barcode to the scanned set
-            scannedBarcodes.add(decodedText);
-            // Make a request to the API
-            fetch('https://localhost:7264/api/scan/' + decodedText)
-                .then(response => response.json())
-                .then(data => {
-                    // Check the status of the response
-                    if (data.status == 200) {
-                        // Barcode found, get the product details
-                        let product = data.foodResponseDetails;
-                        // Create a bootstrap card element for the product
-                        let productHtml = `
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">${product.name}</h5>
-                                    <p class="card-text">Carbohydrates: ${product.carbohydrates} g</p>
-                                    <p class="card-text">Protein: ${product.protein} g</p>
-                                    <p class="card-text">Fat: ${product.fat} g</p>
-                                    <button class="btn btn-primary">Log data</button>
-                                </div>
-                            </div>
-                        `;
-                        // Append the product element to the container
-                        document.getElementById('products').innerHTML += productHtml;
-                    } else {
-                        // Barcode not found, create a bootstrap alert element
-                        let productHtml = `
-                            <div class="alert alert-warning">
-                                <p>Barcode not found: ${decodedText}</p>
-                                <button class="btn btn-secondary">Add manually</button>
-                            </div>
-                        `;
-                        // Append the alert element to the container
-                        document.getElementById('products').innerHTML += productHtml;
-                    }
-                })
-                .catch(error => {
-                    // Handle the error
-                    console.error(error);
-                });
+let qrboxFunction = function (viewfinderWidth, viewfinderHeight) {
+    let minEdgePercentage = 0.5; // 70%
+    let minEdgeSize = Math.min(viewfinderWidth, viewfinderHeight);
+    let qrboxSize = Math.floor(minEdgeSize * minEdgePercentage);
+    return {
+        width: qrboxSize,
+        height: qrboxSize
+    };
+};
+
+const displayProductDetails = (productDetails) => {
+    // Create a card for the product
+    const productCard = document.createElement('div');
+    productCard.classList.add('card', 'mb-3');
+
+    // Create a card body
+    const cardBody = document.createElement('div');
+    cardBody.classList.add('card-body');
+    productCard.appendChild(cardBody);
+
+    // Add the product name
+    const productName = document.createElement('h5');
+    productName.classList.add('card-title');
+    productName.textContent = productDetails.foodResponseDetails.name;
+    cardBody.appendChild(productName);
+
+    // Add the product nutrients
+    const productNutrients = document.createElement('p');
+    productNutrients.classList.add('card-text');
+    productNutrients.textContent = `Carbohydrates: ${productDetails.foodResponseDetails.carbohydrates} g, Protein: ${productDetails.foodResponseDetails.protein} g, Fat: ${productDetails.foodResponseDetails.fat} g`;
+    cardBody.appendChild(productNutrients);
+
+    // Add the product card to the products container
+    const productsContainer = document.getElementById('products');
+    productsContainer.insertBefore(productCard, productsContainer.firstChild);
+
+
+};
+
+const qrCodeSuccessCallback = async (decodedText, decodedResult) => {
+    // Check if the barcode has already been scanned
+    if (scannedBarcodes.includes(decodedText)) {
+        return;
+    }
+
+    // Add the barcode to the scanned barcodes
+    scannedBarcodes.push(decodedText);
+
+    try {
+        // Call the API to get the product details
+        const response = await fetch(`https://localhost:7264/api/scan/${decodedText}`);
+        const data = await response.json();
+
+        // Check if the barcode was found
+        if (data.status === 200) {
+            // Display the product details
+            displayProductDetails(data);
         }
+    } catch (error) {
+        console.error(error);
     }
 };
 
-// Define the config object
-const config = {
-    fps: 30,
-    qrbox: {
-        width: 250, height: 250
-    }
+const config = { fps: 10, qrbox: qrboxFunction };
+
+
+// Start the barcode scanner
+const startBarcodeScanner = () => {
+    html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback);
 };
 
-// Create a set of scanned barcodes
-let scannedBarcodes = new Set();
-
-// Start the camera and the QR code scanning
-html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback);
+// Call the startBarcodeScanner function to start the scanning process
+startBarcodeScanner();
