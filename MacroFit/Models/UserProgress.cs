@@ -23,15 +23,15 @@ namespace MacroFit.Models
         [RegularExpression(@"^[0-9]{1,2}(\.[0-9]{1,2})?$", ErrorMessage = "Body fat percentage must be a number with up to 2 decimal places.")]
         [Range(0, 100, ErrorMessage = "Body fat percentage must be between 0 and 100.")]
         [Display(Name = "Body Fat Percentage")]
-        public double BodyFatPercentage { get; set; }
+        public double? BodyFatPercentage { get; set; }
 
         [Display(Name = "Progress Image")]
-        public string ProgressImage { get; set; }
+        public string? ProgressImage { get; set; }
 
 
         [MaxLength(250, ErrorMessage = "Description cannot exceed 250 characters.")]
         [Display(Name = "Description")]
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         // Navigation properties
 

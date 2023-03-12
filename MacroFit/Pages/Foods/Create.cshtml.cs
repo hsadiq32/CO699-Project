@@ -8,54 +8,49 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using MacroFit.Data;
 using MacroFit.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace MacroFit.Pages.Foods
 {
     public class CreateModel : PageModel
     {
-        private readonly MacroFit.Data.MacroFitContext _context;
+        private readonly MacroFitContext _context;
 
-        public CreateModel(MacroFit.Data.MacroFitContext context)
+        public CreateModel(MacroFitContext context)
         {
             _context = context;
         }
 
-        public IActionResult OnGet()
+        [BindProperty]
+        public FoodLog FoodLog { get; set; }
+        [BindProperty]
+        public Food Food { get; set; }
+        [BindProperty]
+        public FoodUnit FoodUnit { get; set; }
+        public async Task<IActionResult> OnGetAsync()
         {
             return Page();
         }
 
-        [BindProperty]
-        public Food Food { get; set; }
-
-        [BindProperty]
-        public FoodUnit FoodUnit { get; set; }
-
-
-        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    // Iterate through the errors and add them to a list
-            //    var errorList = new List<string>();
-            //    foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
-            //    {
-            //        errorList.Add(error.ErrorMessage);
-            //    }
+            var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (userId == null)
+            {
+                return NotFound();
+            }
 
-            //    // Pass the error list to the view
-            //    ViewData["Errors"] = errorList;
+            var user = await _context.Accounts.FirstOrDefaultAsync(u => u.Id == userId);
+            if (user == null)
+            {
+                return NotFound();
+            }
 
-            //    return Page();
-            //}
-
-
-            // Check if there is an existing FoodUnit with the same properties
+            FoodLog.Account = user;
             var existingFoodUnit = await _context.FoodUnits.FirstOrDefaultAsync(
                 fu => fu.Name == FoodUnit.Name &&
-                      fu.SymbolName == FoodUnit.SymbolName &&
-                      fu.GramsConversion == FoodUnit.GramsConversion);
+                fu.SymbolName == FoodUnit.SymbolName &&
+                fu.GramsConversion == FoodUnit.GramsConversion);
 
             // Use the existing FoodUnit or create a new one
             var foodUnit = existingFoodUnit ?? new FoodUnit
@@ -68,12 +63,18 @@ namespace MacroFit.Pages.Foods
             // Set the FoodUnit property of the Food object
             Food.FoodUnit = foodUnit;
 
-            _context.Foods.Add(Food);
-            _context.SaveChanges();
+            //if (!ModelState.IsValid)
+            //{
+            //    return Page();
+            //}
+
+
+            FoodLog.Food = Food;
+
+            _context.FoodLogs.Add(FoodLog);
+            await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
-
         }
-
     }
 }

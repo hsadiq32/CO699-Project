@@ -20,34 +20,44 @@ namespace MacroFit.Models
 
         [Required(ErrorMessage = "Activity Level is required.")]
         [Display(Name = "Activity Level")]
-        public ActivityLevel ActivityLevel { get; set; }
+        public ActivityLevel ActivityLevel { get; set; } = ActivityLevel.Moderate;
 
         [Required(ErrorMessage = "Goal Type is required.")]
         [Display(Name = "Goal Type")]
-        public GoalType GoalType { get; set; }
+        public GoalType GoalType { get; set; } = GoalType.MaintainWeight;
 
         [Required(ErrorMessage = "Calorie Goal is required.")]
         [Range(100, 20000, ErrorMessage = "Calorie Goal must be between 100 and 20000.")]
         [Display(Name = "Calorie Goal")]
-        public int CalorieGoal { get; set; }
+        public int CalorieGoal { get; set; } = 2000;
 
         [Required(ErrorMessage = "Carbohydrates percentage is required.")]
         [RegularExpression(@"^[0-9]{1,2}(\.[0-9]{1,2})?$", ErrorMessage = "Carbohydrates percentage must be a number with up to 2 decimal places.")]
         [Range(0, 100, ErrorMessage = "Carbohydrates percentage must be between 0 and 100.")]
         [Display(Name = "Carbohydrates Percentage")]
-        public double CarbohydratesPercentage { get; set; }
+        public double CarbohydratesPercentage { get; set; } = 55;
 
         [Required(ErrorMessage = "Protein percentage is required.")]
         [RegularExpression(@"^[0-9]{1,2}(\.[0-9]{1,2})?$", ErrorMessage = "Protein percentage must be a number with up to 2 decimal places.")]
         [Range(0, 100, ErrorMessage = "Protein percentage must be between 0 and 100.")]
         [Display(Name = "Protein Percentage")]
-        public double ProteinPercentage { get; set; }
+        public double ProteinPercentage { get; set; } = 20;
 
         [Required(ErrorMessage = "Fat percentage is required.")]
         [RegularExpression(@"^[0-9]{1,2}(\.[0-9]{1,2})?$", ErrorMessage = "Fat percentage must be a number with up to 2 decimal places.")]
         [Range(0, 100, ErrorMessage = "Fat percentage must be between 0 and 100.")]
         [Display(Name = "Fat Percentage")]
-        public double FatPercentage { get; set; }
+        public double FatPercentage { get; set; } = 25;
+    }
+
+    public enum Theme
+    {
+        [Display(Name = "Dark")]
+        Dark,
+        [Display(Name = "Light")]
+        Light,
+        [Display(Name = "High Contrast")]
+        Contrast
     }
 
     public enum DashboardView

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using MacroFit.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using MacroFit.Data;
-using MacroFit.Models;
+using System.Security.Claims;
 
 namespace MacroFit.Pages.Foods
 {
@@ -19,14 +15,37 @@ namespace MacroFit.Pages.Foods
             _context = context;
         }
 
-        public IList<Food> Food { get;set; } = default!;
+        public IList<FoodLog> FoodLog { get; set; } = default!;
+        public DateTime SelectedDate { get; set; } = DateTime.Now.Date;
 
-        public async Task OnGetAsync()
+        public async Task<IActionResult> OnGetAsync(DateTime? date)
         {
-            if (_context.Foods != null)
+            var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (userId == null)
             {
-                Food = await _context.Foods.ToListAsync();
+                return NotFound();
             }
+
+            var user = await _context.Accounts.FirstOrDefaultAsync(u => u.Id == userId);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            if (date.HasValue)
+            {
+                SelectedDate = date.Value.Date;
+            }
+
+            FoodLog = await _context.FoodLogs
+                .Include(fl => fl.Food)
+                    .ThenInclude(f => f.FoodUnit)
+                .Where(fl => fl.Account == user && fl.DateTime.Date == SelectedDate)
+                .ToListAsync();
+
+
+            return Page();
         }
     }
+
 }

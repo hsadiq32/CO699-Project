@@ -12,48 +12,48 @@ namespace MacroFit.Pages.Foods
 {
     public class DeleteModel : PageModel
     {
-        private readonly MacroFit.Data.MacroFitContext _context;
+        private readonly MacroFitContext _context;
 
-        public DeleteModel(MacroFit.Data.MacroFitContext context)
+        public DeleteModel(MacroFitContext context)
         {
             _context = context;
         }
 
         [BindProperty]
-      public Food Food { get; set; }
+      public FoodLog FoodLog { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Foods == null)
+            if (id == null || _context.FoodLogs == null)
             {
                 return NotFound();
             }
 
-            var food = await _context.Foods.FirstOrDefaultAsync(m => m.Id == id);
+            var foodlog = await _context.FoodLogs.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (food == null)
+            if (foodlog == null)
             {
                 return NotFound();
             }
             else 
             {
-                Food = food;
+                FoodLog = foodlog;
             }
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-            if (id == null || _context.Foods == null)
+            if (id == null || _context.FoodLogs == null)
             {
                 return NotFound();
             }
-            var food = await _context.Foods.FindAsync(id);
+            var foodlog = await _context.FoodLogs.FindAsync(id);
 
-            if (food != null)
+            if (foodlog != null)
             {
-                Food = food;
-                _context.Foods.Remove(Food);
+                FoodLog = foodlog;
+                _context.FoodLogs.Remove(FoodLog);
                 await _context.SaveChangesAsync();
             }
 

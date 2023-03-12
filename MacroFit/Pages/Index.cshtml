@@ -2,10 +2,38 @@
 @model MacroFit.Pages.IndexModel
 @if (Model.LoginCheck)
 {
-    <p>Welcome, @Model.UserDetails[0].FirstName!</p><br>
-    <p>Last Name: @Model.UserDetails[0].LastName</p><br>
-    <p>DOB: @Model.UserDetails[0].DateOfBirth</p>
-    <br>
+    <div class="card" style="width:100%;max-width: 800px;">
+        <div class="card-body">
+            <h5 class="card-title text-center">Welcome  @Model.UserDetails[0].FirstName</h5>
+            <hr />
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <div class="row">
+                <div class="col card">
+                    Column
+                </div>
+                <div class="col card">
+                    Column
+                </div>
+                <div class="col card">
+                    Column
+                </div>
+            </div>
+            <div class="card" style="width:100%;max-width: 800px; height:30px">
+
+            </div>
+            <div class="card-text">
+                <p>Last Name: @Model.UserDetails[0].LastName</p><br>
+                <p>DOB: @Model.UserDetails[0].DateOfBirth</p>
+                <br>
+                </div>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+
+        </div>
+    </div>
+
+
 }
 else
 {

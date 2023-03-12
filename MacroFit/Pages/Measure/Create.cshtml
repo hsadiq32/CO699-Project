@@ -1,0 +1,60 @@
+﻿@page
+@model MacroFit.Pages.Measure.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>UserProgress</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="UserProgress.Date" class="control-label"></label>
+                <input asp-for="UserProgress.Date" class="form-control" />
+                <span asp-validation-for="UserProgress.Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserProgress.Weight" class="control-label"></label>
+                <input asp-for="UserProgress.Weight" class="form-control" />
+                <span asp-validation-for="UserProgress.Weight" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserProgress.Height" class="control-label"></label>
+                <input asp-for="UserProgress.Height" class="form-control" />
+                <span asp-validation-for="UserProgress.Height" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserProgress.BodyFatPercentage" class="control-label"></label>
+                <input asp-for="UserProgress.BodyFatPercentage" class="form-control" />
+                <span asp-validation-for="UserProgress.BodyFatPercentage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserProgress.ProgressImage" class="control-label"></label>
+                <input asp-for="UploadedFile" style="margin-bottom: 17px;" />
+            </div>
+            <div class="form-group">
+                <label asp-for="UserProgress.Description" class="control-label"></label>
+                <input asp-for="UserProgress.Description" class="form-control" />
+                <span asp-validation-for="UserProgress.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

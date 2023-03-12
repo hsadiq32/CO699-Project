@@ -1,96 +1,244 @@
 ﻿@page
+@using MacroFit.Models
 @model MacroFit.Pages.Foods.IndexModel
-
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Food Diary";
 }
-
-<h1>Index</h1>
-
+<h1>Food Diary</h1>
 <p>
     <a asp-page="Create">Create New</a>
 </p>
+<p>
+    <form method="get">
+        <label for="date">Select date:</label>
+        <input type="date" name="date" value="@Model.SelectedDate.ToString("yyyy-MM-dd")" onchange="this.form.submit()">
+    </form>
+</p>
+
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Food[0].Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Food[0].Barcode)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Food[0].ServingSize)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Food[0].Calories)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Food[0].Protein)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Food[0].Carbohydrates)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Food[0].Fat)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Food[0].FatSat)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Food[0].Fibre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Food[0].Sugar)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Food[0].Sodium)
-            </th>
+            <th>Date/Time</th>
+            <th>Food Name</th>
+            <th>Serving Size</th>
+            <th>Calories</th>
+            <th>Protein</th>
+            <th>Carbs</th>
+            <th>Fat</th>
+            <th>Fiber</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Food) {
+        @if (Model.FoodLog != null)
+        {
+            foreach (var item in Model.FoodLog)
+            {
+                <tr>
+                    <td>@item.DateTime.ToString("dd/MM/yyyy HH:mm:ss")</td>
+                    <td>@item.Food.Name</td>
+                    @{
+                        double servingGrams = @item.Food.FoodUnit.GramsConversion * (item.Food.ServingSize / 100);
+                        double totalGrams = @item.Amount * servingGrams;
+
+                    }
+                    <td>@totalGrams
+                        @item.Food.FoodUnit.SymbolName</td>
+                    <td>@((item.Food.Calories / servingGrams) * totalGrams)</td>
+                    <td>@((item.Food.Protein / servingGrams) * totalGrams)</td>
+                    <td>@((item.Food.Carbohydrates / servingGrams) * totalGrams)</td>
+                    <td>@((item.Food.Fat / servingGrams) * totalGrams)</td>
+                    <td>@((item.Food.Fibre / servingGrams)*totalGrams)</td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="8">No food log available for selected date.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+                        <h1>Test</h1>
+
+<h2>Breakfast</h2>
+<table class="table">
+    <thead>
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Barcode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ServingSize)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Calories)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Protein)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Carbohydrates)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fat)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FatSat)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fibre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Sugar)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Sodium)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
+            <th>Date/Time</th>
+            <th>Food Name</th>
+            <th>Serving Size</th>
+            <th>Calories</th>
+            <th>Protein</th>
+            <th>Carbs</th>
+            <th>Fat</th>
+            <th>Fiber</th>
+            <th></th>
         </tr>
-}
+    </thead>
+    <tbody>
+        @foreach (var item in Model.FoodLog.Where(fl => fl.Type == MealType.Breakfast))
+        {
+            <tr>
+                <td>@item.DateTime.ToString("dd/MM/yyyy HH:mm:ss")</td>
+                <td>@item.Food.Name</td>
+                @{
+                    double servingGrams = @item.Food.FoodUnit.GramsConversion * (item.Food.ServingSize / 100);
+                    double totalGrams = @item.Amount * servingGrams;
+                }
+                <td>@totalGrams @item.Food.FoodUnit.SymbolName</td>
+                <td>@((item.Food.Calories / servingGrams) * totalGrams)</td>
+                <td>@((item.Food.Protein / servingGrams) * totalGrams)</td>
+                <td>@((item.Food.Carbohydrates / servingGrams) * totalGrams)</td>
+                <td>@((item.Food.Fat / servingGrams) * totalGrams)</td>
+                <td>@((item.Food.Fibre / servingGrams) * totalGrams)</td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+@*        <tr>
+            <td></td>
+            <td><strong>Total</strong></td>
+            <td></td>
+            <td>@Model.TotalBreakfastCalories</td>
+            <td>@Model.TotalBreakfastProtein</td>
+            <td>@Model.TotalBreakfastCarbs</td>
+            <td>@Model.TotalBreakfastFat</td>
+            <td>@Model.TotalBreakfastFibre</td>
+            <td></td>
+        </tr>*@
+    </tbody>
+</table>
+
+<h2>Lunch</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Date/Time</th>
+            <th>Food Name</th>
+            <th>Amount</th>
+            <th>Calories</th>
+            <th>Protein</th>
+            <th>Carbs</th>
+            <th>Fat</th>
+            <th>Fiber</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.FoodLog.Where(fl => fl.Type == MealType.Lunch))
+        {
+            <tr>
+                <td>@item.DateTime.ToString("dd/MM/yyyy HH:mm:ss")</td>
+                <td>@item.Food.Name</td>
+                @{
+                    double servingGrams = @item.Food.FoodUnit.GramsConversion * (item.Food.ServingSize / 100);
+                    double totalGrams = @item.Amount * servingGrams;
+                }
+                <td>@totalGrams @item.Food.FoodUnit.SymbolName</td>
+                <td>@((item.Food.Calories / servingGrams) * totalGrams)</td>
+                <td>@((item.Food.Protein / servingGrams) * totalGrams)</td>
+                <td>@((item.Food.Carbohydrates / servingGrams) * totalGrams)</td>
+                <td>@((item.Food.Fat / servingGrams) * totalGrams)</td>
+                <td>@((item.Food.Fibre / servingGrams) * totalGrams)</td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h2>Dinner</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Date/Time</th>
+            <th>Food Name</th>
+            <th>Serving Size</th>
+            <th>Calories</th>
+            <th>Protein</th>
+            <th>Carbs</th>
+            <th>Fat</th>
+            <th>Fiber</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.FoodLog.Where(fl => fl.Type == MealType.Dinner))
+        {
+            <tr>
+                <td>@item.DateTime.ToString("dd/MM/yyyy HH:mm:ss")</td>
+                <td>@item.Food.Name</td>
+                @{
+                    double servingGrams = @item.Food.FoodUnit.GramsConversion * (item.Food.ServingSize / 100);
+                    double totalGrams = @item.Amount * servingGrams;
+                }
+                <td>@totalGrams @item.Food.FoodUnit.SymbolName</td>
+                <td>@((item.Food.Calories / servingGrams) * totalGrams)</td>
+                <td>@((item.Food.Protein / servingGrams) * totalGrams)</td>
+                <td>@((item.Food.Carbohydrates / servingGrams) * totalGrams)</td>
+                <td>@((item.Food.Fat / servingGrams) * totalGrams)</td>
+                <td>@((item.Food.Fibre / servingGrams) * totalGrams)</td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h2>Snack</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Date/Time</th>
+            <th>Food Name</th>
+            <th>Serving Size</th>
+            <th>Calories</th>
+            <th>Protein</th>
+            <th>Carbs</th>
+            <th>Fat</th>
+            <th>Fiber</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.FoodLog.Where(fl => fl.Type == MealType.Snack))
+        {
+            <tr>
+                <td>@item.DateTime.ToString("dd/MM/yyyy HH:mm:ss")</td>
+                <td>@item.Food.Name</td>
+                @{
+                    double servingGrams = @item.Food.FoodUnit.GramsConversion * (item.Food.ServingSize / 100);
+                    double totalGrams = @item.Amount * servingGrams;
+                }
+                <td>@totalGrams @item.Food.FoodUnit.SymbolName</td>
+                <td>@((item.Food.Calories / servingGrams) * totalGrams)</td>
+                <td>@((item.Food.Protein / servingGrams) * totalGrams)</td>
+                <td>@((item.Food.Carbohydrates / servingGrams) * totalGrams)</td>
+                <td>@((item.Food.Fat / servingGrams) * totalGrams)</td>
+                <td>@((item.Food.Fibre / servingGrams) * totalGrams)</td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

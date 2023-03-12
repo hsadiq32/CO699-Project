@@ -28,8 +28,10 @@ namespace MacroFit.Models
         [Display(Name = "Gender")]
         public Gender Gender { get; set; }
 
+        public string? UserData { get; set; }
+
         // Navigation properties
-        public UserSettings UserSettings { get; set; }  // Singular name for navigation property 
+        public UserSettings? UserSettings { get; set; }  // Singular name for navigation property 
 
     }
 

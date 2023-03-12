@@ -1,0 +1,75 @@
+﻿@page
+@model RegisterSettingsModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>UserSettings</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="UserSettings.DarkModeToggle" /> @Html.DisplayNameFor(model => model.UserSettings.DarkModeToggle)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserSettings.DashboardView" class="control-label"></label>
+                <select asp-for="UserSettings.DashboardView" class="form-control"></select>
+                <span asp-validation-for="UserSettings.DashboardView" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="UserSettings.AutoGoal" /> @Html.DisplayNameFor(model => model.UserSettings.AutoGoal)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="UserSettings.MetricToggle" /> @Html.DisplayNameFor(model => model.UserSettings.MetricToggle)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserSettings.ActivityLevel" class="control-label"></label>
+                <select asp-for="UserSettings.ActivityLevel" class="form-control"></select>
+                <span asp-validation-for="UserSettings.ActivityLevel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserSettings.GoalType" class="control-label"></label>
+                <select asp-for="UserSettings.GoalType" class="form-control"></select>
+                <span asp-validation-for="UserSettings.GoalType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserSettings.CalorieGoal" class="control-label"></label>
+                <input asp-for="UserSettings.CalorieGoal" class="form-control" />
+                <span asp-validation-for="UserSettings.CalorieGoal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserSettings.CarbohydratesPercentage" class="control-label"></label>
+                <input asp-for="UserSettings.CarbohydratesPercentage" class="form-control" />
+                <span asp-validation-for="UserSettings.CarbohydratesPercentage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserSettings.ProteinPercentage" class="control-label"></label>
+                <input asp-for="UserSettings.ProteinPercentage" class="form-control" />
+                <span asp-validation-for="UserSettings.ProteinPercentage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserSettings.FatPercentage" class="control-label"></label>
+                <input asp-for="UserSettings.FatPercentage" class="form-control" />
+                <span asp-validation-for="UserSettings.FatPercentage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

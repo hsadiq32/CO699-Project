@@ -9,79 +9,37 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Food</h4>
+    <h4>FoodLog</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Food.Name)
+            @Html.DisplayNameFor(model => model.FoodLog.DateTime)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Food.Name)
+            @Html.DisplayFor(model => model.FoodLog.DateTime)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Food.Barcode)
+            @Html.DisplayNameFor(model => model.FoodLog.Type)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Food.Barcode)
+            @Html.DisplayFor(model => model.FoodLog.Type)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Food.ServingSize)
+            @Html.DisplayNameFor(model => model.FoodLog.HungerLevel)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Food.ServingSize)
+            @Html.DisplayFor(model => model.FoodLog.HungerLevel)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Food.Calories)
+            @Html.DisplayNameFor(model => model.FoodLog.Amount)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Food.Calories)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Food.Protein)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Food.Protein)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Food.Carbohydrates)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Food.Carbohydrates)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Food.Fat)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Food.Fat)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Food.FatSat)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Food.FatSat)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Food.Fibre)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Food.Fibre)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Food.Sugar)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Food.Sugar)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Food.Sodium)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Food.Sodium)
+            @Html.DisplayFor(model => model.FoodLog.Amount)
         </dd>
     </dl>
     
     <form method="post">
-        <input type="hidden" asp-for="Food.Id" />
+        <input type="hidden" asp-for="FoodLog.Id" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
         <a asp-page="./Index">Back to List</a>
     </form>

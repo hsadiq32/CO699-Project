@@ -1,4 +1,5 @@
 ﻿@page
+@using MacroFit.Models
 @model IndexModel
 @{
     ViewData["Title"] = "Profile";
@@ -9,18 +10,62 @@
 <partial name="_StatusMessage" for="StatusMessage" />
 <div class="row">
     <div class="col-md-6">
-        <form id="profile-form" method="post">
+        <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-floating">
-                <input asp-for="Username" class="form-control" disabled />
-                <label asp-for="Username" class="form-label"></label>
+            <input type="hidden" asp-for="UserSettings.Id" />
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="UserSettings.DarkModeToggle" /> @Html.DisplayNameFor(model => model.UserSettings.DarkModeToggle)
+                </label>
             </div>
-            <div class="form-floating">
-                <input asp-for="Input.PhoneNumber" class="form-control" />
-                <label asp-for="Input.PhoneNumber" class="form-label"></label>
-                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+            <div class="form-group">
+                <label asp-for="UserSettings.DashboardView" class="control-label"></label>
+                <select asp-for="UserSettings.DashboardView" asp-items="Html.GetEnumSelectList<DashboardView>()" class="form-control"></select>
+                <span asp-validation-for="UserSettings.DashboardView" class="text-danger"></span>
             </div>
-            <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="UserSettings.AutoGoal" /> @Html.DisplayNameFor(model => model.UserSettings.AutoGoal)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="UserSettings.MetricToggle" /> @Html.DisplayNameFor(model => model.UserSettings.MetricToggle)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserSettings.ActivityLevel" class="control-label"></label>
+                <select asp-for="UserSettings.ActivityLevel" asp-items="Html.GetEnumSelectList<ActivityLevel>()" class="form-control"></select>
+                <span asp-validation-for="UserSettings.ActivityLevel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserSettings.GoalType" class="control-label"></label>
+                <select asp-for="UserSettings.GoalType" asp-items="Html.GetEnumSelectList<GoalType>()" class="form-control"></select>
+                <span asp-validation-for="UserSettings.GoalType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserSettings.CalorieGoal" class="control-label"></label>
+                <input asp-for="UserSettings.CalorieGoal" class="form-control" />
+                <span asp-validation-for="UserSettings.CalorieGoal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserSettings.CarbohydratesPercentage" class="control-label"></label>
+                <input asp-for="UserSettings.CarbohydratesPercentage" class="form-control" />
+                <span asp-validation-for="UserSettings.CarbohydratesPercentage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserSettings.ProteinPercentage" class="control-label"></label>
+                <input asp-for="UserSettings.ProteinPercentage" class="form-control" />
+                <span asp-validation-for="UserSettings.ProteinPercentage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserSettings.FatPercentage" class="control-label"></label>
+                <input asp-for="UserSettings.FatPercentage" class="form-control" />
+                <span asp-validation-for="UserSettings.FatPercentage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
         </form>
     </div>
 </div>

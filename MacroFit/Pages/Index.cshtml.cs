@@ -23,12 +23,14 @@ namespace MacroFit.Pages
 
         public IList<User> UserDetails { get;set; } = default!;
 
+        public UserSettings UserSettings { get; set; }
+
         public async Task<IActionResult> OnGetAsync()
         {
             var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             if (userId == null)
             {
-                return Page();
+                return NotFound();
             }
             else {
                 var user = await _context.Accounts

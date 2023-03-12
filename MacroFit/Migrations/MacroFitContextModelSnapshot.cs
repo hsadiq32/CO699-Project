@@ -278,14 +278,13 @@ namespace MacroFit.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<double>("BodyFatPercentage")
+                    b.Property<double?>("BodyFatPercentage")
                         .HasColumnType("float");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
@@ -293,7 +292,6 @@ namespace MacroFit.Migrations
                         .HasColumnType("float");
 
                     b.Property<string>("ProgressImage")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("Weight")
@@ -577,7 +575,10 @@ namespace MacroFit.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("UserSettingsId")
+                    b.Property<string>("UserData")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("UserSettingsId")
                         .HasColumnType("int");
 
                     b.HasIndex("UserSettingsId");
@@ -714,9 +715,7 @@ namespace MacroFit.Migrations
                 {
                     b.HasOne("MacroFit.Models.UserSettings", "UserSettings")
                         .WithMany()
-                        .HasForeignKey("UserSettingsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserSettingsId");
 
                     b.Navigation("UserSettings");
                 });

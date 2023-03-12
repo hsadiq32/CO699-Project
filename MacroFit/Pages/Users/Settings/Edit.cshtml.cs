@@ -54,10 +54,42 @@ namespace MacroFit.Pages.Users.Settings
                 .Where(us => us.Id == userId)
                 .Select(us => us.UserSettings)
                 .FirstOrDefaultAsync();
-            if (userSettings == null)
+
+            // Initialize a variable to count the number of tries
+            int tries = 0;
+
+            // Loop until userSettings is not null or tries exceeds 1
+            do
             {
-                return NotFound();
-            }
+                if (userSettings == null)
+                {
+                    // Create a new usersettings object with default values
+                    userSettings = new UserSettings();
+
+                    // Get the account object for the current user
+                    var account = await _context.Accounts.FindAsync(userId);
+
+                    // Link the usersettings to the account
+                    account.UserSettings = userSettings;
+
+                    // Save the changes to the database
+                    try
+                    {
+                        await _context.SaveChangesAsync();
+                    }
+                    catch (Exception e)
+                    {
+                        // Handle any exceptions that may occur when saving changes
+                        Console.WriteLine(e.Message);
+                        return Page();
+                    }
+
+                }
+
+                // Increment tries by 1
+                tries++;
+
+            } while (userSettings == null && tries <= 1);
 
             UserSettings = userSettings;
             return Page();

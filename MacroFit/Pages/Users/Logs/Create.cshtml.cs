@@ -22,18 +22,16 @@ namespace MacroFit.Pages.Users.Logs
             _context = context;
         }
 
-        public IActionResult OnGet()
-        {
-            return Page();
-        }
-
         [BindProperty]
         public FoodLog FoodLog { get; set; }
         [BindProperty]
         public Food Food { get; set; }
-
         [BindProperty]
         public FoodUnit FoodUnit { get; set; }
+        public async Task<IActionResult> OnGetAsync()
+        {
+            return Page();
+        }
 
         public async Task<IActionResult> OnPostAsync()
         {

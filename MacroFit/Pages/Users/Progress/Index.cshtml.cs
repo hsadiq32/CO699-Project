@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using MacroFit.Data;
 using MacroFit.Models;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MacroFit.Pages.Users.Progress
 {
+    [Authorize]
     public class IndexModel : PageModel
     {
         private readonly MacroFit.Data.MacroFitContext _context;
@@ -21,12 +24,27 @@ namespace MacroFit.Pages.Users.Progress
 
         public IList<UserProgress> UserProgress { get;set; } = default!;
 
-        public async Task OnGetAsync()
+        public async Task<IActionResult> OnGetAsync()
         {
             if (_context.UserProgress != null)
             {
-                UserProgress = await _context.UserProgress.ToListAsync();
+                var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                if (userId == null)
+                {
+                    return NotFound();
+                }
+                var user = await _context.Accounts.FirstOrDefaultAsync(u => u.Id == userId);
+                if (user == null)
+                {
+                    return NotFound();
+                }
+
+                UserProgress = await _context.UserProgress
+                    .Where(us => us.Account == user)
+                    .ToListAsync();
+
             }
+            return Page();
         }
     }
 }

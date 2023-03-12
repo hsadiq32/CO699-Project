@@ -13,29 +13,29 @@ namespace MacroFit.Pages.Foods
 {
     public class EditModel : PageModel
     {
-        private readonly MacroFit.Data.MacroFitContext _context;
+        private readonly MacroFitContext _context;
 
-        public EditModel(MacroFit.Data.MacroFitContext context)
+        public EditModel(MacroFitContext context)
         {
             _context = context;
         }
 
         [BindProperty]
-        public Food Food { get; set; } = default!;
+        public FoodLog FoodLog { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Foods == null)
+            if (id == null || _context.FoodLogs == null)
             {
                 return NotFound();
             }
 
-            var food =  await _context.Foods.FirstOrDefaultAsync(m => m.Id == id);
-            if (food == null)
+            var foodlog = await _context.FoodLogs.FirstOrDefaultAsync(m => m.Id == id);
+            if (foodlog == null)
             {
                 return NotFound();
             }
-            Food = food;
+            FoodLog = foodlog;
             return Page();
         }
 
@@ -48,7 +48,7 @@ namespace MacroFit.Pages.Foods
                 return Page();
             }
 
-            _context.Attach(Food).State = EntityState.Modified;
+            _context.Attach(FoodLog).State = EntityState.Modified;
 
             try
             {
@@ -56,7 +56,7 @@ namespace MacroFit.Pages.Foods
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!FoodExists(Food.Id))
+                if (!FoodLogExists(FoodLog.Id))
                 {
                     return NotFound();
                 }
@@ -69,9 +69,9 @@ namespace MacroFit.Pages.Foods
             return RedirectToPage("./Index");
         }
 
-        private bool FoodExists(int id)
+        private bool FoodLogExists(int id)
         {
-          return _context.Foods.Any(e => e.Id == id);
+            return _context.FoodLogs.Any(e => e.Id == id);
         }
     }
 }
