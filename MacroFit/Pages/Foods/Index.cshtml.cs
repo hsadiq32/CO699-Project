@@ -17,11 +17,7 @@ namespace MacroFit.Pages.Foods
 
         public IList<FoodLog> FoodLog { get; set; } = default!;
         public DateTime SelectedDate { get; set; } = DateTime.Now.Date;
-        public IList<MacronutrientData> BreakfastData { get; set; } = new List<MacronutrientData>();
-        public IList<MacronutrientData> LunchData { get; set; } = new List<MacronutrientData>();
-        public IList<MacronutrientData> DinnerData { get; set; } = new List<MacronutrientData>();
-        public IList<MacronutrientData> SnackData { get; set; } = new List<MacronutrientData>();
-        public IList<MacronutrientData> OverallData { get; set; } = new List<MacronutrientData>();
+        public IList<MacronutrientData> MacronutrientData { get; set; } = new List<MacronutrientData>();
 
         public UserSettings UserSettings { get; set; }
 
@@ -50,27 +46,13 @@ namespace MacroFit.Pages.Foods
                 .Where(fl => fl.Account == user && fl.DateTime.Date == SelectedDate)
                 .ToListAsync();
 
-            foreach (var log in FoodLog)
-            {
-                var data = new MacronutrientData(log);
-                switch (log.Type)
-                {
-                    case MealType.Breakfast:
-                        BreakfastData.Add(data);
-                        break;
-                    case MealType.Lunch:
-                        LunchData.Add(data);
-                        break;
-                    case MealType.Dinner:
-                        DinnerData.Add(data);
-                        break;
-                    case MealType.Snack:
-                        SnackData.Add(data);
-                        break;
-                }
-                OverallData.Add(data);
-            }
-            
+            MacronutrientData = await _context.FoodLogs
+                .Include(fl => fl.Food)
+                    .ThenInclude(f => f.FoodUnit)
+                .Where(fl => fl.Account == user && fl.DateTime.Date == SelectedDate)
+                .Select(fl => new MacronutrientData(fl))
+                .ToListAsync();
+
 
 
             return Page();
@@ -92,23 +74,29 @@ namespace MacroFit.Pages.Foods
         public double Sugar { get; set; }
         public double Sodium { get; set; }
         public double Fibre { get; set; }
+        public MealType MealType { get; set; }
 
 
         public MacronutrientData(FoodLog foodLog)
         {
+            if (foodLog == null)
+            {
+                throw new ArgumentNullException(nameof(foodLog));
+            }
+
             Id = foodLog.Id;
             FoodName = foodLog.Food.Name;
             ConsumptionTime = foodLog.DateTime;
             Amount = foodLog.Amount * (foodLog.Food.FoodUnit.GramsConversion * (foodLog.Food.ServingSize / 100));
             AmountSymbol = foodLog.Food.FoodUnit.SymbolName;
-            Calories = (foodLog.Food.Calories/100) * foodLog.Amount;
+            Calories = (foodLog.Food.Calories / 100) * foodLog.Amount;
             Carbohydrates = (foodLog.Food.Carbohydrates / 100) * foodLog.Amount;
             Fat = (foodLog.Food.Fat / 100) * foodLog.Amount;
             Protein = (foodLog.Food.Protein / 100) * foodLog.Amount;
             Sugar = (foodLog.Food.Sugar / 100) * foodLog.Amount;
             Sodium = (foodLog.Food.Sodium / 100) * foodLog.Amount;
             Fibre = (foodLog.Food.Fibre / 100) * foodLog.Amount;
-
+            MealType = foodLog.Type;
         }
     }
 

@@ -15,103 +15,21 @@
     </form>
 </p>
 <h4>Total</h4>
-<p> @Model.OverallData.Sum(b => b.Calories).ToString("0.##")kcal, 
-    Carbohydrates: @Model.OverallData.Sum(b => b.Carbohydrates).ToString("0.##")g,
-    Fat: @Model.OverallData.Sum(b => b.Fat).ToString("0.##")g, 
-    Protein: @Model.OverallData.Sum(b => b.Protein).ToString("0.##")g
+<p>
+    @Model.MacronutrientData.Sum(b => b.Calories).ToString("0.##")kcal,
+    Carbohydrates: @Model.MacronutrientData.Sum(b => b.Carbohydrates).ToString("0.##")g,
+    Fat: @Model.MacronutrientData.Sum(b => b.Fat).ToString("0.##")g, 
+    Protein: @Model.MacronutrientData.Sum(b => b.Protein).ToString("0.##")g
 </p>
 <hr />
-
-<h4>Breakfast</h4>
-<p>Calories: @Model.BreakfastData.Sum(b => b.Calories).ToString("0.##")kcal, 
-    Carbohydrates: @Model.BreakfastData.Sum(b => b.Carbohydrates).ToString("0.##")g, 
-    Fat: @Model.BreakfastData.Sum(b => b.Fat).ToString("0.##")g, 
-    Protein: @Model.BreakfastData.Sum(b => b.Protein).ToString("0.##")g</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Date/Time</th>
-            <th>Food Name</th>
-            <th>Serving Size</th>
-            <th>Calories</th>
-            <th>Protein</th>
-            <th>Carbs</th>
-            <th>Fat</th>
-            <th>Fibre</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.BreakfastData)
-        {
-            <tr>
-                <td>@item.ConsumptionTime</td>
-                <td>@item.FoodName</td>
-                <td>@item.Amount.ToString("0.##") @item.AmountSymbol</td>
-                <td>@item.Calories.ToString("0.##")</td>
-                <td>@item.Protein.ToString("0.##")</td>
-                <td>@item.Carbohydrates.ToString("0.##")</td>
-                <td>@item.Fat.ToString("0.##")</td>
-                <td>@item.Fibre.ToString("0.##")</td>
-                <td>
-                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-
-<hr />
-<h4>Lunch</h4>
-
+<h4>Breakfast
+    <a asp-page="/Log/Index" asp-route-MealType="breakfast" asp-route-Date="@Model.SelectedDate">Add</a>
+</h4>
 <p>
-    Calories: @Model.LunchData.Sum(b => b.Calories).ToString("0.##")kcal,
-    Carbohydrates: @Model.LunchData.Sum(b => b.Carbohydrates).ToString("0.##")g,
-    Fat: @Model.LunchData.Sum(b => b.Fat).ToString("0.##")g, 
-    Protein: @Model.LunchData.Sum(b => b.Protein).ToString("0.##")g</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Date/Time</th>
-            <th>Food Name</th>
-            <th>Serving Size</th>
-            <th>Calories</th>
-            <th>Protein</th>
-            <th>Carbs</th>
-            <th>Fat</th>
-            <th>Fibre</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.LunchData)
-        {
-            <tr>
-                <td>@item.ConsumptionTime</td>
-                <td>@item.FoodName</td>
-                <td>@item.Amount.ToString("0.##") @item.AmountSymbol</td>
-                <td>@item.Calories.ToString("0.##")</td>
-                <td>@item.Protein.ToString("0.##")</td>
-                <td>@item.Carbohydrates.ToString("0.##")</td>
-                <td>@item.Fat.ToString("0.##")</td>
-                <td>@item.Fibre.ToString("0.##")</td>
-                <td>
-                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-<hr />
-
-<h4>Dinner</h4>
-
-<p>Calories: @Model.DinnerData.Sum(b => b.Calories).ToString("0.##")kcal, 
-    Carbohydrates: @Model.DinnerData.Sum(b => b.Carbohydrates).ToString("0.##")g, 
-    Fat: @Model.DinnerData.Sum(b => b.Fat).ToString("0.##")g, 
-    Protein: @Model.DinnerData.Sum(b => b.Protein).ToString("0.##")g
+    Calories: @Model.MacronutrientData.Where(m => m.MealType == MealType.Breakfast).Sum(m => m.Calories).ToString("0.##")kcal,
+    Carbohydrates: @Model.MacronutrientData.Where(m => m.MealType == MealType.Breakfast).Sum(m => m.Carbohydrates).ToString("0.##")g,
+    Fat: @Model.MacronutrientData.Where(m => m.MealType == MealType.Breakfast).Sum(m => m.Fat).ToString("0.##")g,
+    Protein: @Model.MacronutrientData.Where(m => m.MealType == MealType.Breakfast).Sum(m => m.Protein).ToString("0.##")g
 </p>
 <table class="table">
     <thead>
@@ -128,7 +46,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.DinnerData)
+        @foreach (var item in Model.MacronutrientData.Where(m => m.MealType == MealType.Breakfast))
         {
             <tr>
                 <td>@item.ConsumptionTime</td>
@@ -148,14 +66,15 @@
     </tbody>
 </table>
 <hr />
-
-<h4>Snacks</h4>
-
+<h4>Lunch
+    <a asp-page="/Log/Index" asp-route-MealType="lunch" asp-route-Date="@Model.SelectedDate">Add</a>
+    </h4>
 <p>
-    Calories: @Model.SnackData.Sum(b => b.Calories).ToString("0.##")kcal,
-    Carbohydrates: @Model.SnackData.Sum(b => b.Carbohydrates).ToString("0.##")g,
-    Fat: @Model.SnackData.Sum(b => b.Fat).ToString("0.##")g,
-    Protein: @Model.SnackData.Sum(b => b.Protein).ToString("0.##")g</p>
+    Calories: @Model.MacronutrientData.Where(m => m.MealType == MealType.Lunch).Sum(m => m.Calories).ToString("0.##")kcal,
+    Carbohydrates: @Model.MacronutrientData.Where(m => m.MealType == MealType.Lunch).Sum(m => m.Carbohydrates).ToString("0.##")g,
+    Fat: @Model.MacronutrientData.Where(m => m.MealType == MealType.Lunch).Sum(m => m.Fat).ToString("0.##")g,
+    Protein: @Model.MacronutrientData.Where(m => m.MealType == MealType.Lunch).Sum(m => m.Protein).ToString("0.##")g
+</p>
 <table class="table">
     <thead>
         <tr>
@@ -171,7 +90,95 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.SnackData)
+        @foreach (var item in Model.MacronutrientData.Where(m => m.MealType == MealType.Lunch))
+        {
+            <tr>
+                <td>@item.ConsumptionTime</td>
+                <td>@item.FoodName</td>
+                <td>@item.Amount.ToString("0.##") @item.AmountSymbol</td>
+                <td>@item.Calories.ToString("0.##")</td>
+                <td>@item.Protein.ToString("0.##")</td>
+                <td>@item.Carbohydrates.ToString("0.##")</td>
+                <td>@item.Fat.ToString("0.##")</td>
+                <td>@item.Fibre.ToString("0.##")</td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<hr />
+<h4>Dinner
+    <a asp-page="/Log/Index" asp-route-MealType="dinner" asp-route-Date="@Model.SelectedDate">Add</a>
+</h4>
+<p>
+    Calories: @Model.MacronutrientData.Where(m => m.MealType == MealType.Dinner).Sum(m => m.Calories).ToString("0.##")kcal,
+    Carbohydrates: @Model.MacronutrientData.Where(m => m.MealType == MealType.Dinner).Sum(m => m.Carbohydrates).ToString("0.##")g,
+    Fat: @Model.MacronutrientData.Where(m => m.MealType == MealType.Dinner).Sum(m => m.Fat).ToString("0.##")g,
+    Protein: @Model.MacronutrientData.Where(m => m.MealType == MealType.Dinner).Sum(m => m.Protein).ToString("0.##")g
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Date/Time</th>
+            <th>Food Name</th>
+            <th>Serving Size</th>
+            <th>Calories</th>
+            <th>Protein</th>
+            <th>Carbs</th>
+            <th>Fat</th>
+            <th>Fibre</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.MacronutrientData.Where(m => m.MealType == MealType.Dinner))
+        {
+            <tr>
+                <td>@item.ConsumptionTime</td>
+                <td>@item.FoodName</td>
+                <td>@item.Amount.ToString("0.##") @item.AmountSymbol</td>
+                <td>@item.Calories.ToString("0.##")</td>
+                <td>@item.Protein.ToString("0.##")</td>
+                <td>@item.Carbohydrates.ToString("0.##")</td>
+                <td>@item.Fat.ToString("0.##")</td>
+                <td>@item.Fibre.ToString("0.##")</td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<hr />
+<h4>Snacks
+    <a asp-page="/Log/Index" asp-route-MealType="snack" asp-route-Date="@Model.SelectedDate">Add</a>
+</h4>
+<p>
+    Calories: @Model.MacronutrientData.Where(m => m.MealType == MealType.Snack).Sum(m => m.Calories).ToString("0.##")kcal,
+    Carbohydrates: @Model.MacronutrientData.Where(m => m.MealType == MealType.Snack).Sum(m => m.Carbohydrates).ToString("0.##")g,
+    Fat: @Model.MacronutrientData.Where(m => m.MealType == MealType.Snack).Sum(m => m.Fat).ToString("0.##")g,
+    Protein: @Model.MacronutrientData.Where(m => m.MealType == MealType.Snack).Sum(m => m.Protein).ToString("0.##")g
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Date/Time</th>
+            <th>Food Name</th>
+            <th>Serving Size</th>
+            <th>Calories</th>
+            <th>Protein</th>
+            <th>Carbs</th>
+            <th>Fat</th>
+            <th>Fibre</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.MacronutrientData.Where(m => m.MealType == MealType.Snack))
         {
             <tr>
                 <td>@item.ConsumptionTime</td>

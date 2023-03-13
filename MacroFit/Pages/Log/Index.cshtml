@@ -2,10 +2,18 @@
 @model MacroFit.Pages.Log.ScannerModel
 @{
 }
-<div id="reader"></div>
 
-<!-- Add a container element for the products -->
-<div class="container mt-4" id="products"></div>
+<div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="Barcode" aria-label="Barcode" >
+    <button class="btn btn-success" type="button">Log</button>
+</div>
+
+<div class="row">
+    <div class="col-lg" id="reader" style="width:100%"></div>
+    <!-- Add a container element for the products -->
+    <div class="col-lg" id="products"></div>
+</div>
+
 
 
 <script src="~/js/html5-qrcode.min.js" type="text/javascript"></script>
