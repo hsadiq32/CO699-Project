@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Net.Http;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using MacroFit.Data;
@@ -17,6 +18,7 @@ namespace MacroFit.API
     {
         private readonly HttpClient _httpClient;
         private readonly MacroFitContext _context;
+        private FoodUnit FoodUnit;
 
         public ScanController(HttpClient httpClient, MacroFitContext context)
         {
@@ -65,11 +67,18 @@ namespace MacroFit.API
                     if (product.status == 1)
                     {
                         // If the barcode is valid, add a new Food object to the Food database using LINQ queries and return the newly added Food object.
+                        string customUnit = ExtractUnit(product.ProductData.quantity);
+                        FoodUnit = await _context.FoodUnits.FirstOrDefaultAsync(m => m.SymbolName.ToUpper() == customUnit.ToUpper());
+                        if (FoodUnit == null)
+                        {
+                            FoodUnit = await _context.FoodUnits.FirstOrDefaultAsync(m => m.Id == 1);
+                        }
+
                         var newFood = new Food
                         {
                             Barcode = code,
                             Name = product.ProductData.product_name,
-                            ServingSize = 1,
+                            ServingSize = product.ProductData.product_quantity,
                             Calories = product.ProductData.Nutriments.energy_kcal_100g,
                             Protein = product.ProductData.Nutriments.proteins_100g,
                             Carbohydrates = product.ProductData.Nutriments.carbohydrates_100g,
@@ -78,12 +87,7 @@ namespace MacroFit.API
                             Fibre = product.ProductData.Nutriments.fiber_100g,
                             Sugar = product.ProductData.Nutriments.sugars_100g,
                             Sodium = product.ProductData.Nutriments.sodium_100g,
-                            FoodUnit = new FoodUnit
-                            {
-                                Name = "Grams",
-                                SymbolName = "g",
-                                GramsConversion = 100
-                            } // assuming the serving size unit is always gram (g)
+                            FoodUnit = FoodUnit
                         };
 
                         _context.Foods.Add(newFood);
@@ -156,8 +160,14 @@ namespace MacroFit.API
             public string brands_imported { get; set; }
 
             public string product_name { get; set; }
+
+            public int product_quantity { get; set; }
+            public string quantity { get; set; }
+
             [JsonProperty("nutriments")]
             public Nutriments Nutriments { get; set; }
+
+
 
         }
 
@@ -173,6 +183,32 @@ namespace MacroFit.API
             public double fiber_100g { get; set; }
             public double sodium_100g { get; set; }
 
+        }
+
+        // Function to extract unit of measurement from string
+        public static string ExtractUnit(string unitString)
+        {
+            if(unitString == null)
+            {
+                return "g";
+            }
+            // Create a regex object with the pattern
+            Regex regex = new Regex("[^0-9.]+$");
+
+            // Match the pattern with the string parameter
+            Match match = regex.Match(unitString);
+
+            // If there is a match, return it as a trimmed string
+            if (match.Success)
+            {
+                return match.Value.Trim();
+            }
+
+            // Otherwise, return an empty string
+            else
+            {
+                return "g";
+            }
         }
     }
 }

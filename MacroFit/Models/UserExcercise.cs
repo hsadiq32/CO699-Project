@@ -33,16 +33,19 @@ namespace MacroFit.Models
 
     public enum ExerciseType
     {
+        [Display(Name = "Cardiovascular")]
         Cardiovascular,
-        StrengthTraining,
-        FlexibilityTraining,
-        BalanceTraining
+        [Display(Name = "Strength Training")]
+        StrengthTraining
     }
 
     public enum ExerciseIntensity
     {
+        [Display(Name = "Low Intensity")]
         LowIntensity,
+        [Display(Name = "Moderate Intensity")]
         ModerateIntensity,
+        [Display(Name = "High Intensity")]
         HighIntensity
     }
 }

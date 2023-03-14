@@ -11,7 +11,7 @@
 <p>
     <form method="get">
         <label for="date">Select date:</label>
-        <input type="date" name="date" value="@Model.SelectedDate.ToString("yyyy-MM-dd")" onchange="this.form.submit()">
+        <input type="date" name="date" value="@Model.LogDateTime.ToString("yyyy-MM-dd")" onchange="this.form.submit()">
     </form>
 </p>
 <h4>Total</h4>
@@ -23,7 +23,7 @@
 </p>
 <hr />
 <h4>Breakfast
-    <a asp-page="/Log/Index" asp-route-MealType="breakfast" asp-route-Date="@Model.SelectedDate">Add</a>
+    <a asp-page="/Log/Index" asp-route-MealType="breakfast" asp-route-Date="@Model.LogDateTime">Add</a>
 </h4>
 <p>
     Calories: @Model.MacronutrientData.Where(m => m.MealType == MealType.Breakfast).Sum(m => m.Calories).ToString("0.##")kcal,
@@ -67,7 +67,7 @@
 </table>
 <hr />
 <h4>Lunch
-    <a asp-page="/Log/Index" asp-route-MealType="lunch" asp-route-Date="@Model.SelectedDate">Add</a>
+    <a asp-page="/Log/Index" asp-route-MealType="lunch" asp-route-Date="@Model.LogDateTime">Add</a>
     </h4>
 <p>
     Calories: @Model.MacronutrientData.Where(m => m.MealType == MealType.Lunch).Sum(m => m.Calories).ToString("0.##")kcal,
@@ -111,7 +111,7 @@
 </table>
 <hr />
 <h4>Dinner
-    <a asp-page="/Log/Index" asp-route-MealType="dinner" asp-route-Date="@Model.SelectedDate">Add</a>
+    <a asp-page="/Log/Index" asp-route-MealType="dinner" asp-route-Date="@Model.LogDateTime">Add</a>
 </h4>
 <p>
     Calories: @Model.MacronutrientData.Where(m => m.MealType == MealType.Dinner).Sum(m => m.Calories).ToString("0.##")kcal,
@@ -155,7 +155,7 @@
 </table>
 <hr />
 <h4>Snacks
-    <a asp-page="/Log/Index" asp-route-MealType="snack" asp-route-Date="@Model.SelectedDate">Add</a>
+    <a asp-page="/Log/Index" asp-route-MealType="snack" asp-route-Date="@Model.LogDateTime">Add</a>
 </h4>
 <p>
     Calories: @Model.MacronutrientData.Where(m => m.MealType == MealType.Snack).Sum(m => m.Calories).ToString("0.##")kcal,

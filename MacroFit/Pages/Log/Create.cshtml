@@ -7,115 +7,137 @@
 }
 
 <h1>Create</h1>
-
-<h1>Create</h1>
-
-<h4>FoodLog</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="row justify-content-center">
+    <div class="col-lg-8">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+                <div class="col-6 card">
+                    <div class="mb-3">
+                        <label asp-for="FoodLog.DateTime" class="form-label"></label>
+                        <div class="input-group">
+                            <input asp-for="FoodLog.DateTime" class="form-control">
+                        </div>
+                        <span asp-validation-for="FoodLog.DateTime" class="form-text text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="FoodLog.Type" class="form-label"></label>
+                        <div class="input-group">
+                            <select asp-for="FoodLog.Type" asp-items="Html.GetEnumSelectList<MealType>()" class="form-control"></select>
+                        </div>
+                        <span asp-validation-for="FoodLog.Type" class="form-text text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="FoodLog.HungerLevel" class="form-label"></label>
+                        <div class="input-group">
+                            <select asp-for="FoodLog.HungerLevel" asp-items="Html.GetEnumSelectList<HungerLevel>()" class="form-control"></select>
+                        </div>
+                        <span asp-validation-for="FoodLog.HungerLevel" class="form-text text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="FoodLog.Amount" class="form-label"></label>
 
-            <h1>FoodLog</h1>
-            <div class="form-group">
-                <label asp-for="FoodLog.DateTime" class="control-label"></label>
-                <input asp-for="FoodLog.DateTime" class="form-control" />
-                <span asp-validation-for="FoodLog.DateTime" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FoodLog.Type" class="control-label"></label>
-                <select asp-for="FoodLog.Type" asp-items="Html.GetEnumSelectList<MealType>()" class="form-control"></select>
-                <span asp-validation-for="FoodLog.Type" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FoodLog.HungerLevel" class="control-label"></label>
-                <select asp-for="FoodLog.HungerLevel" asp-items="Html.GetEnumSelectList<HungerLevel>()" class="form-control"></select>
-                <span asp-validation-for="FoodLog.HungerLevel" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FoodLog.Amount" class="control-label"></label>
-                <input asp-for="FoodLog.Amount" class="form-control" />
-                <span asp-validation-for="FoodLog.Amount" class="text-danger"></span>
-            </div>
+                        <div class="d-flex">
+                            <div class="input-group">
+                                <input asp-for="FoodLog.Amount" type="number" class="form-control">
+                                <input class="form-control" type="number" asp-for="Food.ServingSize" style="max-width: 80px;text-align: center;">
+                                <select class="form-select" style="max-width: 80px;text-align: center;" id="inputGroupSelect01">
+                                    <option selected value="g">g</option>
+                                    <option value="kg">kg</option>
+                                </select>
+                            </div>
+                            <span class="input-group-text" style="margin-left: 10px;overflow: hidden;">0.00</span>
+                        </div>
 
+                        <span asp-validation-for="FoodLog.Amount" class="form-text text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-6 card">
+                    <h1>Food</h1>
+                    @if (Model.FoodId != null)
+                    {
+                        <input asp-for="FoodId" class="form-control" />
+                    }
+                    else
+                    {
+                        <div class="form-group">
+                            <label asp-for="Food.Name" class="control-label"></label>
+                            <input asp-for="Food.Name" class="form-control" />
+                            <span asp-validation-for="Food.Name" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Food.Barcode" class="control-label"></label>
+                            <input asp-for="Food.Barcode" class="form-control" />
+                            <span asp-validation-for="Food.Barcode" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Food.ServingSize" class="control-label"></label>
+                            <input asp-for="Food.ServingSize" class="form-control" />
+                            <span asp-validation-for="Food.ServingSize" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Food.Calories" class="control-label"></label>
+                            <input asp-for="Food.Calories" class="form-control" />
+                            <span asp-validation-for="Food.Calories" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Food.Protein" class="control-label"></label>
+                            <input asp-for="Food.Protein" class="form-control" />
+                            <span asp-validation-for="Food.Protein" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Food.Carbohydrates" class="control-label"></label>
+                            <input asp-for="Food.Carbohydrates" class="form-control" />
+                            <span asp-validation-for="Food.Carbohydrates" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Food.Fat" class="control-label"></label>
+                            <input asp-for="Food.Fat" class="form-control" />
+                            <span asp-validation-for="Food.Fat" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Food.FatSat" class="control-label"></label>
+                            <input asp-for="Food.FatSat" class="form-control" />
+                            <span asp-validation-for="Food.FatSat" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Food.Fibre" class="control-label"></label>
+                            <input asp-for="Food.Fibre" class="form-control" />
+                            <span asp-validation-for="Food.Fibre" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Food.Sugar" class="control-label"></label>
+                            <input asp-for="Food.Sugar" class="form-control" />
+                            <span asp-validation-for="Food.Sugar" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Food.Sodium" class="control-label"></label>
+                            <input asp-for="Food.Sodium" class="form-control" />
+                            <span asp-validation-for="Food.Sodium" class="text-danger"></span>
+                        </div>
 
-            <h1>Food</h1>
+                        <h1>Food Units</h1>
 
-            <div class="form-group">
-                <label asp-for="Food.Name" class="control-label"></label>
-                <input asp-for="Food.Name" class="form-control" />
-                <span asp-validation-for="Food.Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Food.Barcode" class="control-label"></label>
-                <input asp-for="Food.Barcode" class="form-control" />
-                <span asp-validation-for="Food.Barcode" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Food.ServingSize" class="control-label"></label>
-                <input asp-for="Food.ServingSize" class="form-control" />
-                <span asp-validation-for="Food.ServingSize" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Food.Calories" class="control-label"></label>
-                <input asp-for="Food.Calories" class="form-control" />
-                <span asp-validation-for="Food.Calories" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Food.Protein" class="control-label"></label>
-                <input asp-for="Food.Protein" class="form-control" />
-                <span asp-validation-for="Food.Protein" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Food.Carbohydrates" class="control-label"></label>
-                <input asp-for="Food.Carbohydrates" class="form-control" />
-                <span asp-validation-for="Food.Carbohydrates" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Food.Fat" class="control-label"></label>
-                <input asp-for="Food.Fat" class="form-control" />
-                <span asp-validation-for="Food.Fat" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Food.FatSat" class="control-label"></label>
-                <input asp-for="Food.FatSat" class="form-control" />
-                <span asp-validation-for="Food.FatSat" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Food.Fibre" class="control-label"></label>
-                <input asp-for="Food.Fibre" class="form-control" />
-                <span asp-validation-for="Food.Fibre" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Food.Sugar" class="control-label"></label>
-                <input asp-for="Food.Sugar" class="form-control" />
-                <span asp-validation-for="Food.Sugar" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Food.Sodium" class="control-label"></label>
-                <input asp-for="Food.Sodium" class="form-control" />
-                <span asp-validation-for="Food.Sodium" class="text-danger"></span>
-            </div>
+                        <div class="form-group">
+                            <label asp-for="Food.FoodUnit.Name" class="control-label"></label>
+                            <input asp-for="Food.FoodUnit.Name" class="form-control" />
+                            <span asp-validation-for="Food.FoodUnit.Name" class="text-danger"></span>
+                        </div>
 
-            <h1>Food Units</h1>
+                        <div class="form-group">
+                            <label asp-for="Food.FoodUnit.SymbolName" class="control-label"></label>
+                            <input asp-for="Food.FoodUnit.SymbolName" class="form-control" />
+                            <span asp-validation-for="Food.FoodUnit.SymbolName" class="text-danger"></span>
+                        </div>
 
-            <div class="form-group">
-                <label asp-for="FoodUnit.Name" class="control-label"></label>
-                <input asp-for="FoodUnit.Name" class="form-control" />
-                <span asp-validation-for="FoodUnit.Name" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="FoodUnit.SymbolName" class="control-label"></label>
-                <input asp-for="FoodUnit.SymbolName" class="form-control" />
-                <span asp-validation-for="FoodUnit.SymbolName" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="FoodUnit.GramsConversion" class="control-label"></label>
-                <input asp-for="FoodUnit.GramsConversion" class="form-control" />
-                <span asp-validation-for="FoodUnit.GramsConversion" class="text-danger"></span>
+                        <div class="form-group">
+                            <label asp-for="Food.FoodUnit.GramsConversion" class="control-label"></label>
+                            <input asp-for="Food.FoodUnit.GramsConversion" class="form-control" />
+                            <span asp-validation-for="Food.FoodUnit.GramsConversion" class="text-danger"></span>
+                        </div>
+                    }
+                </div>
             </div>
 
             <div class="form-group">

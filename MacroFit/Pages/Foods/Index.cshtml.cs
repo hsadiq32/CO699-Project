@@ -17,6 +17,7 @@ namespace MacroFit.Pages.Foods
 
         public IList<FoodLog> FoodLog { get; set; } = default!;
         public DateTime SelectedDate { get; set; } = DateTime.Now.Date;
+        public DateTime LogDateTime { get; set; }
         public IList<MacronutrientData> MacronutrientData { get; set; } = new List<MacronutrientData>();
 
         public UserSettings UserSettings { get; set; }
@@ -39,6 +40,10 @@ namespace MacroFit.Pages.Foods
             {
                 SelectedDate = date.Value.Date;
             }
+
+            DateTime currentTime = DateTime.Now;
+            LogDateTime = new DateTime(SelectedDate.Year, SelectedDate.Month, SelectedDate.Day,
+                                                 currentTime.Hour, currentTime.Minute, currentTime.Second);
 
             FoodLog = await _context.FoodLogs
                 .Include(fl => fl.Food)
