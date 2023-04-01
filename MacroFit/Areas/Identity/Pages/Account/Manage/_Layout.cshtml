@@ -9,19 +9,20 @@
     }
 }
 
-<h1>Manage your account</h1>
+<h2>Account Settings</h2>
 
 <div>
-    <h2>Change your account settings</h2>
-    <hr />
-    <div class="row">
-        <div class="col-md-3">
-            <partial name="_ManageNav" />
-        </div>
-        <div class="col-md-9">
-            @RenderBody()
+    <div class="card" style="padding: 20px 25px">
+        <div class="row">
+            <div class="col" style="max-width: 30%">
+                <partial name="_ManageNav" />
+            </div>
+            <div class="col" style="max-width: 70%;padding-left:25px">
+                @RenderBody()
+            </div>
         </div>
     </div>
+
 </div>
 
 @section Scripts {

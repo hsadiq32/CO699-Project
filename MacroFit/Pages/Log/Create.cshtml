@@ -37,27 +37,81 @@
                     </div>
                     <div class="mb-3">
                         <label asp-for="FoodLog.Amount" class="form-label"></label>
-
-                        <div class="d-flex">
+                        <div class="mb-3">
                             <div class="input-group">
-                                <input asp-for="FoodLog.Amount" type="number" class="form-control">
-                                <input class="form-control" type="number" asp-for="Food.ServingSize" style="max-width: 80px;text-align: center;">
-                                <select class="form-select" style="max-width: 80px;text-align: center;" id="inputGroupSelect01">
-                                    <option selected value="g">g</option>
-                                    <option value="kg">kg</option>
+                                <input id="amount"  type="number" class="form-control" style="border-bottom-left-radius: 0px;">
+                                <input id="unitSelectMultiply" class="form-control" type="number" value="@Model.Food.ServingSize" style="max-width: 80px;text-align: center;">
+                                <select id="unitSelect" class="form-select" style="max-width: 80px;text-align: center;border-bottom-right-radius: 0px;">
+                                    <option selected value="1">g</option>
+                                    <option value="1000">kg</option>
                                 </select>
                             </div>
-                            <span class="input-group-text" style="margin-left: 10px;overflow: hidden;">0.00</span>
+                            <input id="totalAmount" asp-for="FoodLog.Amount" class="form-control" type="text" style="border-top-right-radius: 0px;border-top-left-radius: 0px;" readonly>
+                            <span asp-validation-for="FoodLog.Amount" class="form-text text-danger"></span>
                         </div>
-
-                        <span asp-validation-for="FoodLog.Amount" class="form-text text-danger"></span>
                     </div>
                 </div>
                 <div class="col-6 card">
-                    <h1>Food</h1>
+                    <h3>Food</h3>
+                    <hr />
                     @if (Model.FoodId != null)
                     {
                         <input asp-for="FoodId" class="form-control" />
+<table id="nutrition-facts">
+
+	<colgroup>
+		<col class="col-1">
+		<col class="col-2">
+		<col class="col-1">
+		<col class="col-2">
+	</colgroup>
+
+	<tbody>
+		<tr>
+			<td class="col-1">Calories</td>
+			<td class="col-2">84</td>
+			<td class="col-1">Sodium</td>
+			<td class="col-2">600 mg</td>
+		</tr>
+		<tr>
+			<td class="col-1">Total Fat</td>
+			<td class="col-2">1 g</td>
+			<td class="col-1">Potassium</td>
+			<td class="col-2">-- mg</td>
+		</tr>
+
+		<tr>
+			<td class="col-1 sub">Saturated</td>
+			<td class="col-2">1 g</td>
+			<td class="col-1">Total Carbs</td>
+			<td class="col-2">0 g</td>
+		</tr>
+
+		<tr>
+			<td class="col-1 sub">Polyunsaturated</td>
+			<td class="col-2">-- g</td>
+			<td class="col-1">Dietary Fiber</td>
+			<td class="col-2">0 g</td>
+		</tr>
+
+		<tr>
+			<td class="col-1 sub">Monounsaturated</td>
+			<td class="col-2">-- g</td>
+			<td class="col-1">Sugars</td>
+			<td class="col-2">0 g</td>
+		</tr>
+
+		<tr>
+			<td class="col-1 sub">Trans</td>
+			<td class="col-2">-- g</td>
+			<td class="col-1">Protein</td>
+			<td class="col-2">18 g</td>
+		</tr>
+
+	</tbody>
+
+</table>
+
                     }
                     else
                     {
@@ -139,13 +193,164 @@
                     }
                 </div>
             </div>
-
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Composition of Foods Integrated Dataset</th>
+        <th>Per 100g</th>
+        <th>Reference Intake</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Calories</td>
+        <td>
+          <div class="form-floating">
+            <input type="number" class="form-control" id="calories" asp-for="Food.Calories" required>
+            <label for="calories">Calories</label>
+          </div>
+        </td>
+        <td>2000 kcal</td>
+      </tr>
+      <tr>
+        <td>Protein</td>
+        <td>
+          <div class="form-floating">
+            <input type="number" class="form-control" id="protein" asp-for="Food.Protein" required>
+            <label for="protein">Protein</label>
+          </div>
+        </td>
+        <td>50 g</td>
+        <tr>
+        <td>Carbohydrates</td>
+        <td>
+          <div class="form-floating">
+            <input type="number" class="form-control" id="carbs" asp-for="Food.Carbohydrates" required>
+            <label for="carbs">Carbohydrates</label>
+          </div>
+        </td>
+        <td>260 g</td>
+      </tr>
+      <tr>
+        <td>Fat</td>
+        <td>
+          <div class="form-floating">
+            <input type="number" class="form-control" id="fat" asp-for="Food.Fat" required>
+            <label for="fat">Fat</label>
+          </div>
+        </td>
+        <td>70 g</td>
+      </tr>
+      <tr>
+        <td>Saturated Fat</td>
+        <td>
+          <div class="form-floating">
+            <input type="number" class="form-control" id="satfat" asp-for="Food.FatSat" required>
+            <label for="satfat">Saturated Fat</label>
+          </div>
+        </td>
+        <td>20 g</td>
+      </tr>
+      <tr>
+        <td>Fibre</td>
+        <td>
+          <div class="form-floating">
+            <input type="number" class="form-control" id="fibre" asp-for="Food.Fibre" required>
+            <label for="fibre">Fibre</label>
+          </div>
+        </td>
+        <td>30 g</td>
+      </tr>
+      <tr>
+        <td>Sugar</td>
+        <td>
+          <div class="form-floating">
+            <input type="number" class="form-control" id="sugar" asp-for="Food.Sugar" required>
+            <label for="sugar">Sugar</label>
+          </div>
+        </td>
+        <td>90 g</td>
+      </tr>
+      <tr>
+        <td>Sodium</td>
+        <td>
+          <div class="form-floating">
+            <input type="number" class="form-control" id="sodium" asp-for="Food.Sodium" required>
+            <label for="sodium">Sodium</label
+                    </div>
+        </td>
+        <td>2.4 g</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<script>
+    // Get the input elements
+    const amountInput = document.getElementById('amount');
+    const unitSelectMultiplyInput = document.getElementById('unitSelectMultiply');
+    const unitSelect = document.getElementById('unitSelect');
+    const totalAmountSpan = document.getElementById('totalAmount');
+
+    // Add event listeners to the input elements
+    amountInput.addEventListener('input', calculateTotalAmount);
+    unitSelectMultiplyInput.addEventListener('input', calculateTotalAmount);
+    unitSelect.addEventListener('change', calculateTotalAmount);
+
+    // Function to calculate the total amount in grams
+    function calculateTotalAmount() {
+        // Get the values of the input elements
+        const amountValue = parseFloat(amountInput.value);
+        const unitSelectMultiplyValue = parseFloat(unitSelectMultiplyInput.value);
+        const unitValue = parseFloat(unitSelect.value);
+
+        // Calculate the total amount in grams
+        const totalAmount = (amountValue * unitSelectMultiplyValue * unitValue) || 0;
+
+        // Update the total amount span
+        totalAmountSpan.setAttribute('value', totalAmount.toFixed(2));
+    }
+    calculateTotalAmount()
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+  // Define the reference intake values
+  const referenceIntake = {
+    calories: 2000,
+    protein: 50,
+    carbs: 260,
+    fat: 70,
+    satfat: 20,
+    fibre: 30,
+    sugar: 90,
+    sodium: 2.4
+  };
+
+  // Iterate over each input and color code based on reference intake
+  $('input').each(function() {
+    const nutrient = $(this).attr('id');
+    const value = $(this).val();
+    const ri = referenceIntake[nutrient];
+    const ratio = value / ri;
+
+    if (ratio <= 0.9 || ratio >= 1.1) {
+      $(this).addClass('bg-danger');
+    } else if (ratio <= 0.95 || ratio >= 1.05) {
+          $(this).addClass('bg-warning');
+    } else {
+      $(this).addClass('bg-success');
+    }
+  });
+});
+</script>
 
 <div>
     <a asp-page="Index">Back to List</a>

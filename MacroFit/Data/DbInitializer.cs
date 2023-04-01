@@ -80,7 +80,7 @@ namespace MacroFit.Data
                     {
                         Name = "Grams",
                         SymbolName = "g",
-                        GramsConversion = 100
+                        GramsConversion = 1
                     },
                     new FoodUnit
                     {
@@ -102,7 +102,7 @@ namespace MacroFit.Data
                     },
                     new FoodUnit
                     {
-                        Name = "Milk Millilitres",
+                        Name = "Millilitres",
                         SymbolName = "ml",
                         GramsConversion = 1
                     },

@@ -1,11 +1,22 @@
 ﻿const html5QrCode = new Html5Qrcode("reader");
 let qrboxFunction = function (viewfinderWidth, viewfinderHeight) {
-    let minEdgePercentage = 0.5; // 70%
-    let minEdgeSize = Math.min(viewfinderWidth, viewfinderHeight);
-    let qrboxSize = Math.floor(minEdgeSize * minEdgePercentage);
+    let minEdgePercentage;
+    let viewportWidth = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+
+    // Adjust minimum edge percentage based on viewport width
+    if (viewportWidth < 600) { // Mobile
+        minEdgePercentage = 0.4; // 60%
+    } else { // Desktop
+        minEdgePercentage = 0.2; // 40%
+    }
+
+    let viewportHeight = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+    let barcodeAspectRatio = 1.5; // Example aspect ratio for a food barcode
+    let qrboxWidth = Math.floor(viewportWidth * minEdgePercentage);
+    let qrboxHeight = Math.floor(qrboxWidth / barcodeAspectRatio);
     return {
-        width: qrboxSize,
-        height: qrboxSize
+        width: qrboxWidth,
+        height: qrboxHeight
     };
 };
 const config = { fps: 30, qrbox: qrboxFunction };
@@ -94,7 +105,7 @@ const qrCodeSuccessCallback = async (decodedText, decodedResult) => {
     if (isFoodBarcode(decodedText)) {
         try {
             // Call the API to get the product details
-            const response = await fetch(`https://localhost:7264/api/scan/${decodedText}`);
+            const response = await fetch(`http://localhost:44391/api/scan/${decodedText}`);
             const data = await response.json();
 
             // Check if the barcode was found

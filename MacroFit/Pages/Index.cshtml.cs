@@ -28,24 +28,16 @@ namespace MacroFit.Pages
         public async Task<IActionResult> OnGetAsync()
         {
             var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            if (userId == null)
+            if (userId != null)
             {
-                return NotFound();
-            }
-            else {
                 var user = await _context.Accounts
                     .Where(us => us.Id == userId)
                     .ToListAsync();
 
-                if (user == null)
-                {
-                    return NotFound();
-                }
-                else
+                if (user != null)
                 {
                     UserDetails = user;
                     LoginCheck = true;
-
                 }
             }
             return Page();

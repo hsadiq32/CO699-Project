@@ -272,6 +272,8 @@ C:\Users\Haroon\Documents\GitHub\CO699-Project\New\MacroFit\bin\Debug\net6.0\run
 C:\Users\Haroon\Documents\GitHub\CO699-Project\New\MacroFit\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
 C:\Users\Haroon\Documents\GitHub\CO699-Project\New\MacroFit\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Haroon\Documents\GitHub\CO699-Project\New\MacroFit\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\pt-BR\Microsoft.CodeAnalysis.resources.dll
+C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\zh-Hans\Microsoft.CodeAnalysis.VisualBasic.Features.resources.dll
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\appsettings.json
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\MacroFit.staticwebassets.runtime.json
@@ -280,6 +282,7 @@ C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\MacroFi
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\MacroFit.runtimeconfig.json
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\MacroFit.dll
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\MacroFit.pdb
+C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\FuzzySharp.dll
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\Humanizer.dll
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\MessagePack.dll
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\MessagePack.Annotations.dll
@@ -358,6 +361,7 @@ C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\System.
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\System.Security.Permissions.dll
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\System.Windows.Extensions.dll
+C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\zxing.dll
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\cs\Microsoft.CodeAnalysis.resources.dll
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\de\Microsoft.CodeAnalysis.resources.dll
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\es\Microsoft.CodeAnalysis.resources.dll
@@ -366,7 +370,6 @@ C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\it\Micr
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\ja\Microsoft.CodeAnalysis.resources.dll
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\ko\Microsoft.CodeAnalysis.resources.dll
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\pl\Microsoft.CodeAnalysis.resources.dll
-C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\pt-BR\Microsoft.CodeAnalysis.resources.dll
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\ru\Microsoft.CodeAnalysis.resources.dll
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\tr\Microsoft.CodeAnalysis.resources.dll
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\zh-Hans\Microsoft.CodeAnalysis.resources.dll
@@ -473,7 +476,6 @@ C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\pl\Micr
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\pt-BR\Microsoft.CodeAnalysis.VisualBasic.Features.resources.dll
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\ru\Microsoft.CodeAnalysis.VisualBasic.Features.resources.dll
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\tr\Microsoft.CodeAnalysis.VisualBasic.Features.resources.dll
-C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\zh-Hans\Microsoft.CodeAnalysis.VisualBasic.Features.resources.dll
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\zh-Hant\Microsoft.CodeAnalysis.VisualBasic.Features.resources.dll
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\cs\Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\de\Microsoft.CodeAnalysis.VisualBasic.Workspaces.resources.dll
@@ -546,3 +548,8 @@ C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\obj\Debug\net6.0\refint\
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\obj\Debug\net6.0\MacroFit.pdb
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\obj\Debug\net6.0\MacroFit.genruntimeconfig.cache
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\obj\Debug\net6.0\ref\MacroFit.dll
+C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\obj\Debug\net6.0\staticwebassets\msbuild.MacroFit.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\obj\Debug\net6.0\staticwebassets\msbuild.build.MacroFit.props
+C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.MacroFit.props
+C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.MacroFit.props
+C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\obj\Debug\net6.0\staticwebassets.pack.json

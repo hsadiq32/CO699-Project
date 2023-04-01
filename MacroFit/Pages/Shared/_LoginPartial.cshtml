@@ -3,38 +3,39 @@
 @inject UserManager<IdentityUser> UserManager
 
 <div class="dropdown" style="position: fixed;right: 15px;top: 16px;">
+    <button class="btn btn-secondary d-flex dynamic-btn usr-btn" aria-expanded="false" data-bs-toggle="dropdown" type="button">
         @if (SignInManager.IsSignedIn(User))
         {
-
-            <button class="btn btn-secondary d-flex dynamic-btn" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="height: 44px;padding: 6px;background: var(--secondary-color);border-radius: 12px;border: 2px solid var(--tertiary-color);padding-left: 12px;padding-right: 12px;">
                 <span class="dnav-button-text2" style="margin-top: 2px;margin-right: 12px;margin-left: 10px;transition: 1s;max-width: 300px;">@User.Identity?.Name</span><span>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor">
                         <!--! Font Awesome Free 6.1.1 by fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
                         <path d="M224 256c70.7 0 128-57.31 128-128s-57.3-128-128-128C153.3 0 96 57.31 96 128S153.3 256 224 256zM274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"></path>
                     </svg>
                 </span>
-            </button>
-        <div class="dropdown-menu dropdown-menu-end dropdown-menu-dark" style="background-color: var(--tertiary-color);">
-                <a class="dropdown-item dynamic-btn" asp-area="Identity" asp-page="/Account/Manage/Index">Manage Account</a>
-                <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
-                <button type="submit" class="dropdown-item dynamic-btn">Logout</button>
-                </form>
-            </div>
+
         }
         else
         {
-            <button class="btn btn-secondary d-flex dynamic-btn" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="height: 44px;padding: 6px;background: var(--secondary-color);border-radius: 12px;border: 2px solid var(--tertiary-color);padding-left: 12px;padding-right: 12px;">
                 <span>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor">
                         <!--! Font Awesome Free 6.1.1 by fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
                         <path d="M224 256c70.7 0 128-57.31 128-128s-57.3-128-128-128C153.3 0 96 57.31 96 128S153.3 256 224 256zM274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"></path>
                     </svg>
                 </span>
-            </button>
-        <div class="dropdown-menu dropdown-menu-end dropdown-menu-dark" style="background-color: var(--tertiary-color);">
-                <a class="dropdown-item dynamic-btn" asp-area="Identity" asp-page="/Account/Login">Login</a>
-                <a class="dropdown-item dynamic-btn" asp-area="Identity" asp-page="/Account/Register">Register</a>
-            </div>
-
         }
+    </button>
+    <div class="dropdown-menu dropdown-menu-end dropdown-menu-dark dropdown-mc">
+        @if (SignInManager.IsSignedIn(User)){
+                        <a class="dropdown-item dynamic-btn" asp-area="Identity" asp-page="/Account/Manage/Index">Manage Account</a>
+            <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                <button type="submit" class="dropdown-item dynamic-btn">Logout</button>
+            </form>
+        }
+        else
+        {
+            <a class="dropdown-item dynamic-btn" asp-area="Identity" asp-page="/Account/Login">Login</a>
+            <a class="dropdown-item dynamic-btn" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        }
+
+    </div>
 </div>

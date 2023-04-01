@@ -19,8 +19,7 @@ namespace MacroFit.Pages.Foods
         public DateTime SelectedDate { get; set; } = DateTime.Now.Date;
         public DateTime LogDateTime { get; set; }
         public IList<MacronutrientData> MacronutrientData { get; set; } = new List<MacronutrientData>();
-
-        public UserSettings UserSettings { get; set; }
+        public  User User { get; set; }
 
         public async Task<IActionResult> OnGetAsync(DateTime? date)
         {
@@ -30,8 +29,10 @@ namespace MacroFit.Pages.Foods
                 return NotFound();
             }
 
-            var user = await _context.Accounts.FirstOrDefaultAsync(u => u.Id == userId);
-            if (user == null)
+            User = await _context.Accounts
+                .Include(fl => fl.UserSettings)
+                .FirstOrDefaultAsync(u => u.Id == userId);
+            if (User == null)
             {
                 return NotFound();
             }
@@ -48,22 +49,26 @@ namespace MacroFit.Pages.Foods
             FoodLog = await _context.FoodLogs
                 .Include(fl => fl.Food)
                     .ThenInclude(f => f.FoodUnit)
-                .Where(fl => fl.Account == user && fl.DateTime.Date == SelectedDate)
+                .Where(fl => fl.Account == User && fl.DateTime.Date == SelectedDate)
                 .ToListAsync();
+
 
             MacronutrientData = await _context.FoodLogs
                 .Include(fl => fl.Food)
                     .ThenInclude(f => f.FoodUnit)
-                .Where(fl => fl.Account == user && fl.DateTime.Date == SelectedDate)
+                .Where(fl => fl.Account == User && fl.DateTime.Date == SelectedDate)
                 .Select(fl => new MacronutrientData(fl))
                 .ToListAsync();
 
-
-
             return Page();
         }
-    }
 
+        public double GramsConverter(double value, double conversion)
+        {
+            return ((User.UserSettings.CalorieGoal / 100) * value) / conversion;
+        }
+
+    }
 
     public class MacronutrientData
     {
@@ -92,7 +97,7 @@ namespace MacroFit.Pages.Foods
             Id = foodLog.Id;
             FoodName = foodLog.Food.Name;
             ConsumptionTime = foodLog.DateTime;
-            Amount = foodLog.Amount * (foodLog.Food.FoodUnit.GramsConversion * (foodLog.Food.ServingSize / 100));
+            Amount = foodLog.Amount * foodLog.Food.FoodUnit.GramsConversion;
             AmountSymbol = foodLog.Food.FoodUnit.SymbolName;
             Calories = (foodLog.Food.Calories / 100) * foodLog.Amount;
             Carbohydrates = (foodLog.Food.Carbohydrates / 100) * foodLog.Amount;

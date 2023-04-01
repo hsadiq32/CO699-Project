@@ -22,6 +22,8 @@ namespace MacroFit.Data
         public DbSet<StudyTopic> StudyTopics { get; set; }
         public DbSet<Study> Studies { get; set; }
 
+
+
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{
         //    // User
@@ -42,4 +44,7 @@ namespace MacroFit.Data
         //}
 
     }
+
+
+
 }

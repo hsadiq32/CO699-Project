@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Drawing.Drawing2D;
 using System.Net.Http;
 using System.Text.Json;
 using System.Text.RegularExpressions;
@@ -77,7 +78,7 @@ namespace MacroFit.API
                         var newFood = new Food
                         {
                             Barcode = code,
-                            Name = product.ProductData.product_name,
+                            Name = foodNameParser(product.ProductData.brands, product.ProductData.product_name),
                             ServingSize = product.ProductData.product_quantity,
                             Calories = product.ProductData.Nutriments.energy_kcal_100g,
                             Protein = product.ProductData.Nutriments.proteins_100g,
@@ -129,6 +130,24 @@ namespace MacroFit.API
             }
         }
 
+        public string foodNameParser(string brand, string food)
+        {
+            if(brand == null || brand == " " || food.Contains(brand))
+            {
+                if (food != null && food.Contains(brand))
+                {
+                    return food;
+                }
+                return "Unknown";
+
+            }
+            else
+            {
+                return brand + " " + food;
+            }
+
+        }
+
         private class FoodResponse
         {
             public int Status { get; set; } = 0;
@@ -156,8 +175,6 @@ namespace MacroFit.API
         private class ProductData
         {
             public string brands { get; set; }
-
-            public string brands_imported { get; set; }
 
             public string product_name { get; set; }
 

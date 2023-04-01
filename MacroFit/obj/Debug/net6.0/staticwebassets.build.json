@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "wpprh/Fm3oJCPDuAKz4fGQhiFwMhLLbScJ1dfawGKoQ=",
+  "Hash": "S29ViwuVzLX3192DQHLZMlKCrhdA3rsltLVx6Gx8Ep0=",
   "Source": "MacroFit",
   "BasePath": "_content/MacroFit",
   "Mode": "Default",
@@ -1154,6 +1154,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\brand.png"
+    },
+    {
+      "Identity": "C:\\Users\\Haroon\\Documents\\GitHub\\CO699-Project\\MacroFit\\wwwroot\\images\\f458fc80-5328-41da-9405-5b2741ccbd31\\0ab86cde2a95bcbe09b909339b64a63a-gigapixel-standard-scale-4_00x_638149474192859727.png",
+      "SourceId": "MacroFit",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Haroon\\Documents\\GitHub\\CO699-Project\\MacroFit\\wwwroot\\",
+      "BasePath": "_content/MacroFit",
+      "RelativePath": "images/f458fc80-5328-41da-9405-5b2741ccbd31/0ab86cde2a95bcbe09b909339b64a63a-gigapixel-standard-scale-4_00x_638149474192859727.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\f458fc80-5328-41da-9405-5b2741ccbd31\\0ab86cde2a95bcbe09b909339b64a63a-gigapixel-standard-scale-4_00x_638149474192859727.png"
     },
     {
       "Identity": "C:\\Users\\Haroon\\Documents\\GitHub\\CO699-Project\\MacroFit\\wwwroot\\js\\html5-qrcode.min.js",

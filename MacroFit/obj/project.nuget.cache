@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "XN1+HL/F0gaiCho8zpUSdNzZMYlQKR+b3kvjukmkWz6IdY1Vs5ZHXf0epVH2lICjADNjZiIaSPAovNvktpXltA==",
+  "dgSpecHash": "G2S2zc76b2SPxzRHZeEFg3jL7+uOqkiKpf+VXoRj/ec2TKjgjtYIQUeb+nbhaqUvYchvjGkbswMz93oUmBsc5Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\Haroon\\Documents\\GitHub\\CO699-Project\\MacroFit\\MacroFit.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Haroon\\.nuget\\packages\\fuzzysharp\\2.0.2\\fuzzysharp.2.0.2.nupkg.sha512",
     "C:\\Users\\Haroon\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Haroon\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
     "C:\\Users\\Haroon\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",
@@ -184,7 +185,8 @@
     "C:\\Users\\Haroon\\.nuget\\packages\\system.threading.timer\\4.3.0\\system.threading.timer.4.3.0.nupkg.sha512",
     "C:\\Users\\Haroon\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512",
     "C:\\Users\\Haroon\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
-    "C:\\Users\\Haroon\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512"
+    "C:\\Users\\Haroon\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
+    "C:\\Users\\Haroon\\.nuget\\packages\\zxing.net\\0.16.9\\zxing.net.0.16.9.nupkg.sha512"
   ],
   "logs": []
 }

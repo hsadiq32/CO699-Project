@@ -2,34 +2,113 @@
 @model MacroFit.Pages.IndexModel
 @if (Model.LoginCheck)
 {
-    <div class="card" style="width:100%;max-width: 800px;">
-        <div class="card-body">
-            <h5 class="card-title text-center">Welcome  @Model.UserDetails[0].FirstName</h5>
-            <hr />
-            <div class="progress">
-                <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-            <div class="row">
-                <div class="col card">
-                    Column
-                </div>
-                <div class="col card">
-                    Column
-                </div>
-                <div class="col card">
-                    Column
-                </div>
-            </div>
-            <div class="card" style="width:100%;max-width: 800px; height:30px">
 
+
+
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Food Search Engine</h1>
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Search for food products" id="search-input">
+                    <button class="btn btn-primary" type="button" id="search-btn">Search</button>
+                </div>
             </div>
-            <div class="card-text">
+        </div>
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div id="search-results"></div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var searchInput = $('#search-input');
+            var searchBtn = $('#search-btn');
+            var searchResults = $('#search-results');
+            var apiUrl = 'http://localhost:44391/api/search/';
+
+            var searchTimeout;
+            var searchFrequency = 500; // milliseconds
+
+            searchInput.on('input', function () {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(function () {
+                    var searchTerm = searchInput.val();
+                    if (searchTerm.length > 2) {
+                        searchApi(searchTerm);
+                    }
+                }, searchFrequency);
+            });
+
+            searchBtn.on('click', function () {
+                var searchTerm = searchInput.val();
+                if (searchTerm.length > 2) {
+                    searchApi(searchTerm);
+                }
+            });
+
+            function searchApi(searchTerm) {
+                $.ajax({
+                    url: apiUrl + searchTerm,
+                    type: 'GET',
+                    success: function (data) {
+                        if (data.length > 0) {
+                            var resultsHtml = '';
+                            $.each(data, function (index, item) {
+                                resultsHtml += '<div class="card mb-3">';
+                                resultsHtml += '<div class="card-body">';
+                                resultsHtml += '<h5 class="card-title">' + item.name + '</h5>';
+                                resultsHtml += '<p class="card-text">Barcode: ' + item.barcode + '</p>';
+                                resultsHtml += '<p class="card-text">Serving Size: ' + item.servingSize + ' ' + item.foodUnit.symbolName + '</p>';
+                                resultsHtml += '<p class="card-text">Calories: ' + item.calories + '</p>';
+                                resultsHtml += '<p class="card-text">Protein: ' + item.protein + ' g</p>';
+                                resultsHtml += '<p class="card-text">Carbohydrates: ' + item.carbohydrates + ' g</p>';
+                                resultsHtml += '<p class="card-text">Fat: ' + item.fat + ' g</p>';
+                                resultsHtml += '<p class="card-text">Saturated Fat: ' + item.fatSat + ' g</p>';
+                                resultsHtml += '<p class="card-text">Fibre: ' + item.fibre + ' g</p>';
+                                resultsHtml += '<p class="card-text">Sugar: ' + item.sugar + ' g</p>';
+                                resultsHtml += '<p class="card-text">Sodium: ' + item.sodium + ' g</p>';
+                                resultsHtml += '</div>';
+                                resultsHtml += '</div>';
+                            });
+                            searchResults.html(resultsHtml);
+                        } else {
+                            searchResults.html('<p>No food products found.</p><button class="btn btn-primary" type="button" id="add-data-btn">Add Data Manually</button>');
+                        }
+                    },
+                    error: function () {
+                        searchResults.html('<p>Error retrieving search results.</p>');
+                    }
+                });
+            }
+        });
+    </script>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card" style="width:100%;">
                 <p>Last Name: @Model.UserDetails[0].LastName</p><br>
-                <p>DOB: @Model.UserDetails[0].DateOfBirth</p>
-                <br>
-                </div>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card" style="width:100%;">
+                <p>Last Name: @Model.UserDetails[0].LastName</p><br>
+            </div>
+        </div>
+    </div>
 
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card" style="width:100%;">
+                <p>Last Name: @Model.UserDetails[0].LastName</p><br>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card" style="width:100%;">
+                <p>Last Name: @Model.UserDetails[0].LastName</p><br>
+            </div>
         </div>
     </div>
 
