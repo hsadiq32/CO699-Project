@@ -1,0 +1,14 @@
+﻿:root {
+    --bg-primary-color: #2b2b2b;
+    --bg-secondary-color: #1c1c1c;
+    --bg-tertiary-color: #333333;
+    --primary-color: rgb(184,222,180);
+    --secondary-color: rgb(184,222,180);
+    --tertiary-color: #504a52;
+    --text-primary-color: white;
+    --text-secondary-color: white;
+    --danger-level-1: #6c6c6c;
+    --danger-level-2: #289c32;
+    --danger-level-3: #cf8b33;
+    --danger-level-4: #cf3333;
+}

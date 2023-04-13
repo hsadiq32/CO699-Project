@@ -5,12 +5,54 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
-<table class="table">
+<div class="btn-toolbar row" role="toolbar" aria-label="Toolbar with button groups">
+    <div class="btn-group col" role="group" aria-label="First group">
+        <button id="filter-1-month" class="btn btn-primary">1 Month</button>
+        <button id="filter-6-months" class="btn btn-primary">6 Months</button>
+        <button id="filter-1-year" class="btn btn-primary">1 Year</button>
+    </div>
+    <div class="btn-group col" role="group" aria-label="Second group">
+        <button id="sort-ascending" class="btn btn-secondary">Ascending</button>
+        <button id="sort-descending" class="btn btn-secondary">Descending</button>
+    </div>
+    <a class="col d-flex flex-row-reverse bd-highlight" asp-page="Create">
+        <button class="btn btn-success dynamic-btn themed-btn" style="width: 50px;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor">
+                <!--! Font Awesome Free 6.1.1 - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+                <path d="M432 256c0 17.69-14.33 32.01-32 32.01H256v144c0 17.69-14.33 31.99-32 31.99s-32-14.3-32-31.99v-144H48c-17.67 0-32-14.32-32-32.01s14.33-31.99 32-31.99H192v-144c0-17.69 14.33-32.01 32-32.01s32 14.32 32 32.01v144h144C417.7 224 432 238.3 432 256z"></path>
+            </svg>
+            </button>
+    </a>
+</div>
+
+<div class="row mt-3">
+    <div class="col-lg-8">
+        <div class="chart-container" style="height: 100%;">
+            <canvas id="progressChart"></canvas>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">Progress Details</h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text">
+                    <strong>Date:</strong> <span id="progressDate"></span><br>
+                    <strong>Weight:</strong> <span id="progressWeight"></span> kg<br>
+                    <strong>Height:</strong> <span id="progressHeight"></span> m<br>
+                    <strong>Body Fat Percentage:</strong> <span id="progressBodyFat"></span>%<br>
+                    <strong>BMI:</strong> <span id="progressBMI"></span><br>
+                    <strong>Age:</strong> <span id="progressAge"></span> years
+                </p>
+                <img id="progressImage" src="" alt="Progress Image" class="img-thumbnail">
+            </div>
+        </div>
+    </div>
+</div>
+
+<table class="table mt-3">
     <thead>
         <tr>
             <th>
@@ -65,3 +107,170 @@
         }
     </tbody>
 </table>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        $(document).ready(function () {
+            const userDateOfBirth = new Date('@Model.User.DateOfBirth');
+            const rawData = @Html.Raw(Json.Serialize(Model.UserProgress.Select(up => new {
+                id = up.Id,
+                date = up.Date.ToString("yyyy-MM-dd"),
+                weight = up.Weight,
+                height = up.Height,
+                bodyFatPercentage = up.BodyFatPercentage,
+                progressImage = up.ProgressImage,
+                description = up.Description
+            })));
+
+            const calculateAge = (dob, progressDate) => {
+                const ageDifMs = progressDate - dob;
+                const ageDate = new Date(ageDifMs);
+                return Math.abs(ageDate.getUTCFullYear() - 1970);
+            };
+
+            const calculateBMI = (weight, height, dob, progressDate) => {
+                const age = calculateAge(dob, progressDate);
+                if (age >= 18 && age <= 65) {
+                    return (weight / Math.pow(height, 2)).toFixed(1);
+                } else {
+                    return 'N/A';
+                }
+            };
+
+            const ctx = document.getElementById('progressChart').getContext('2d');
+            const chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: rawData.map(item => item.date),
+                    datasets: [{
+                        label: 'Weight',
+                        data: rawData.map(item => item.weight),
+                        borderColor: 'rgb(75, 192, 192)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        yAxisID: 'y1',
+                    }, {
+                        label: 'Body Fat Percentage',
+                        data: rawData.map(item => item.bodyFatPercentage),
+                        borderColor: 'rgb(255, 99, 132)',
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        yAxisID: 'y2',
+                    }, {
+                        label: 'BMI',
+                        data: rawData.map(item => calculateBMI(item.weight, item.height, userDateOfBirth, new Date(item.date))),
+                        borderColor: 'rgb(255, 205, 86)',
+                        backgroundColor: 'rgba(255, 205, 86, 0.2)',
+                        yAxisID: 'y3',
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y1: {
+                            type: 'linear',
+                            position: 'left',
+                        },
+                        y2: {
+                            type: 'linear',
+                            position: 'right',
+                        },
+                        y3: {
+                            type: 'linear',
+                            position: 'right',
+                            display: false
+                        }
+                    },
+                    onHover: (event, chartElement) => {
+                        event.target.style.cursor = chartElement[0] ? 'pointer' : 'default';
+                    }
+                }
+            });
+
+            const updateCard = (data) => {
+                $('#progressImage').attr('src', `/images/${data.progressImage}`);
+                $('#progressDescription').text(data.description);
+                $('#editProgress').attr('href', `./Edit?id=${data.id}`);
+                $('#deleteProgress').attr('href', `./Delete?id=${data.id}`);
+            };
+
+            chart.canvas.addEventListener('click', (event) => {
+                const element = chart.getElementsAtEventForMode(event, 'nearest', { intersect: true }, true)[0];
+                if (element) {
+                    updateCard(rawData[element.index]);
+                }
+            });
+                        // Card hover functionality
+            $('#progressTable tbody tr').hover(function () {
+                const index = $(this).index();
+                chart.setActiveElements([{ index }]);
+                chart.update();
+            }, function () {
+                chart.setActiveElements([]);
+                chart.update();
+            });
+
+            // Filter and sorting functions
+            let currentFilter = 'all';
+            let sortOrder = 'asc';
+            const filterData = () => {
+                const filteredData = rawData.filter(item => {
+                    const progressDate = new Date(item.date);
+                    const today = new Date();
+                    const monthDifference = (today.getFullYear() - progressDate.getFullYear()) * 12 + (today.getMonth() - progressDate.getMonth());
+
+                    switch (currentFilter) {
+                        case 'month':
+                            return monthDifference <= 1;
+                        case 'sixMonths':
+                            return monthDifference <= 6;
+                        case 'year':
+                            return monthDifference <= 12;
+                        default:
+                            return true;
+                    }
+                });
+
+                if (sortOrder === 'desc') {
+                    filteredData.sort((a, b) => new Date(b.date) - new Date(a.date));
+                } else {
+                    filteredData.sort((a, b) => new Date(a.date) - new Date(b.date));
+                }
+
+                return filteredData;
+            };
+
+            const updateChart = () => {
+                const filteredData = filterData();
+                chart.data.labels = filteredData.map(item => item.date);
+                chart.data.datasets[0].data = filteredData.map(item => item.weight);
+                chart.data.datasets[1].data = filteredData.map(item => item.bodyFatPercentage);
+                chart.data.datasets[2].data = filteredData.map(item => calculateBMI(item.weight, item.height, userDateOfBirth, new Date(item.date)));
+                chart.update();
+            };
+
+            // Filter and sort event listeners
+            $('.filter-btn').on('click', function () {
+                currentFilter = $(this).data('filter');
+                $('.filter-btn').removeClass('active');
+                $(this).addClass('active');
+                updateChart();
+            });
+
+            $('.sort-btn').on('click', function () {
+                sortOrder = $(this).data('sort');
+                $('.sort-btn').removeClass('active');
+                $(this).addClass('active');
+                updateChart();
+            });
+
+            // Set initial card data
+            if (rawData.length) {
+                updateCard(rawData[0]);
+            }
+        });
+    </script>
+}
+
+           
+

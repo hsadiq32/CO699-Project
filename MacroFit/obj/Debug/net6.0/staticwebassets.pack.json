@@ -13,12 +13,44 @@
       "PackagePath": "staticwebassets\\bootstrap\\js\\bootstrap.min.js"
     },
     {
+      "Id": "C:\\Users\\Haroon\\Documents\\GitHub\\CO699-Project\\MacroFit\\wwwroot\\css\\progress_circles.css",
+      "PackagePath": "staticwebassets\\css\\progress_circles.css"
+    },
+    {
       "Id": "C:\\Users\\Haroon\\Documents\\GitHub\\CO699-Project\\MacroFit\\wwwroot\\css\\styles.css",
       "PackagePath": "staticwebassets\\css\\styles.css"
     },
     {
+      "Id": "C:\\Users\\Haroon\\Documents\\GitHub\\CO699-Project\\MacroFit\\wwwroot\\css\\theme\\contrast.css",
+      "PackagePath": "staticwebassets\\css\\theme\\contrast.css"
+    },
+    {
+      "Id": "C:\\Users\\Haroon\\Documents\\GitHub\\CO699-Project\\MacroFit\\wwwroot\\css\\theme\\dark.css",
+      "PackagePath": "staticwebassets\\css\\theme\\dark.css"
+    },
+    {
+      "Id": "C:\\Users\\Haroon\\Documents\\GitHub\\CO699-Project\\MacroFit\\wwwroot\\css\\theme\\light.css",
+      "PackagePath": "staticwebassets\\css\\theme\\light.css"
+    },
+    {
       "Id": "C:\\Users\\Haroon\\Documents\\GitHub\\CO699-Project\\MacroFit\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\Haroon\\Documents\\GitHub\\CO699-Project\\MacroFit\\wwwroot\\images\\92207950-a1d3-4a75-a6e8-bb2c9352a1a6\\0ab86cde2a95bcbe09b909339b64a63a-gigapixel-standard-scale-4_00x_638166748012820769.png",
+      "PackagePath": "staticwebassets\\images\\92207950-a1d3-4a75-a6e8-bb2c9352a1a6\\0ab86cde2a95bcbe09b909339b64a63a-gigapixel-standard-scale-4_00x_638166748012820769.png"
+    },
+    {
+      "Id": "C:\\Users\\Haroon\\Documents\\GitHub\\CO699-Project\\MacroFit\\wwwroot\\images\\92207950-a1d3-4a75-a6e8-bb2c9352a1a6\\0ab86cde2a95bcbe09b909339b64a63a-gigapixel-standard-scale-4_00x_638166855108750789.png",
+      "PackagePath": "staticwebassets\\images\\92207950-a1d3-4a75-a6e8-bb2c9352a1a6\\0ab86cde2a95bcbe09b909339b64a63a-gigapixel-standard-scale-4_00x_638166855108750789.png"
+    },
+    {
+      "Id": "C:\\Users\\Haroon\\Documents\\GitHub\\CO699-Project\\MacroFit\\wwwroot\\images\\92207950-a1d3-4a75-a6e8-bb2c9352a1a6\\Fight club (1)_638166769653278347.jpeg",
+      "PackagePath": "staticwebassets\\images\\92207950-a1d3-4a75-a6e8-bb2c9352a1a6\\Fight club (1)_638166769653278347.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\Haroon\\Documents\\GitHub\\CO699-Project\\MacroFit\\wwwroot\\images\\92207950-a1d3-4a75-a6e8-bb2c9352a1a6\\Fight club_638166781971629928.jpeg",
+      "PackagePath": "staticwebassets\\images\\92207950-a1d3-4a75-a6e8-bb2c9352a1a6\\Fight club_638166781971629928.jpeg"
     },
     {
       "Id": "C:\\Users\\Haroon\\Documents\\GitHub\\CO699-Project\\MacroFit\\wwwroot\\images\\brand.png",

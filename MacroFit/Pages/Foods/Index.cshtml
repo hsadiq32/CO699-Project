@@ -4,137 +4,119 @@
 @{
     ViewData["Title"] = "Food Diary";
 }
-<h1>Food Diary</h1>
 
-
-<div class="row">
-    <div class="col-md-3">
-        <div class="progress-circle">
-            <div class="progress">
-                <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-            <span class="progress-text"></span>
-        </div>
-        <div class="goal-label">Calories</div>
+<!-- Import CSS for progress circles -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/circle-progress@1.2.2/dist/circle-progress.min.css">
+<link rel="stylesheet" href="~/css/progress_circles.css">
+<!-- Import JavaScript for progress circles -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/progressbar.js/1.1.0/progressbar.min.js"></script>
+<div class="card-focused" role="toolbar" aria-label="Toolbar with button groups">
+    <div class="d-flex row" style="align-items: center;">
+        <form method="get" class="btn-group col" role="group" aria-label="First group" style="margin-bottom:5px">
+            <input type="date" name="date" class="form-control" value="@Model.LogDateTime.ToString("yyyy-MM-dd")" onchange="this.form.submit()">
+        </form>
+@*        <a class="col-auto d-flex flex-row-reverse bd-highlight" asp-page="Create">
+            <button class="btn btn-success dynamic-btn themed-btn" style="width: 50px;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor">
+                    <!--! Font Awesome Free 6.1.1 - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+                    <path d="M432 256c0 17.69-14.33 32.01-32 32.01H256v144c0 17.69-14.33 31.99-32 31.99s-32-14.3-32-31.99v-144H48c-17.67 0-32-14.32-32-32.01s14.33-31.99 32-31.99H192v-144c0-17.69 14.33-32.01 32-32.01s32 14.32 32 32.01v144h144C417.7 224 432 238.3 432 256z"></path>
+                </svg>
+            </button>
+        </a>*@
     </div>
-    <div class="col-md-3">
-        <div class="progress-circle">
-            <div class="progress">
-                <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-            <span class="progress-text"></span>
+    <div id="progress" class="row ">
+        <div class="col">
+            <div id="calories-circle"></div>
+            <p class="text-center">Calories: @Model.MacronutrientData.Sum(b => b.Calories).ToString("0.##")kcal out of @Model.User.UserSettings.CalorieGoal.ToString("0.##")</p>
         </div>
-        <div class="goal-label">Carbohydrates</div>
-    </div>
-    <div class="col-md-3">
-        <div class="progress-circle">
-            <div class="progress">
-                <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-            <span class="progress-text"></span>
+        <div class="col">
+            <div id="carbohydrates-circle"></div>
+            <p class="text-center">Carbohydrates: @Model.MacronutrientData.Sum(b => b.Carbohydrates).ToString("0.##")g out of @Model.GramsConverter(@Model.User.UserSettings.CarbohydratesPercentage, 4).ToString("0.##")</p>
         </div>
-        <div class="goal-label">Fat</div>
-    </div>
-    <div class="col-md-3">
-        <div class="progress-circle">
-            <div class="progress">
-                <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-            <span class="progress-text"></span>
+        <div class="col">
+            <div id="fat-circle"></div>
+            <p class="text-center">Fat: @Model.MacronutrientData.Sum(b => b.Fat).ToString("0.##")g out of @Model.GramsConverter(@Model.User.UserSettings.FatPercentage, 9).ToString("0.##")</p>
         </div>
-        <div class="goal-label">Protein</div>
+        <div class="col">
+            <div id="protein-circle"></div>
+            <p class="text-center">Protein: @Model.MacronutrientData.Sum(b => b.Protein).ToString("0.##")g out of @Model.GramsConverter(@Model.User.UserSettings.ProteinPercentage, 4).ToString("0.##")</p>
+        </div>
     </div>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <style>
-    .progress-circle {
-        position: relative;
-        width: 120px;
-        height: 120px;
-        margin: 0 auto;
-    }
-
-        .progress-circle .progress-bar {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-        }
-
-    .progress-text {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-
-    .goal-label {
-        text-align: center;
-        margin-top: 20px;
-    }
-
+    .
 </style>
-
 <script>
+     var caloriesPercentage = (@Model.MacronutrientData.Sum(b => b.Calories) / @Model.User.UserSettings.CalorieGoal) * 100;
+     var carbohydratesPercentage = (@Model.MacronutrientData.Sum(b => b.Carbohydrates) / @Model.GramsConverter(@Model.User.UserSettings.CarbohydratesPercentage, 4)) * 100;
+     var fatPercentage = (@Model.MacronutrientData.Sum(b => b.Fat) / @Model.GramsConverter(@Model.User.UserSettings.FatPercentage, 9)) * 100;
+     var proteinPercentage = (@Model.MacronutrientData.Sum(b => b.Protein) / @Model.GramsConverter(@Model.User.UserSettings.ProteinPercentage, 4)) * 100;
 
-    // Get the completion percentage for each goal
-    var caloriesPercentage = @(Model.MacronutrientData.Sum(b => b.Calories) / Model.User.UserSettings.CalorieGoal) * 100;
-    var carbohydratesPercentage = @(Model.MacronutrientData.Sum(b => b.Carbohydrates) / Model.GramsConverter(Model.User.UserSettings.CarbohydratesPercentage, 4)) * 100;
-    var fatPercentage = @(Model.MacronutrientData.Sum(b => b.Fat) / Model.GramsConverter(Model.User.UserSettings.FatPercentage, 9)) * 100;
-    var proteinPercentage = @(Model.MacronutrientData.Sum(b => b.Protein) / Model.GramsConverter(Model.User.UserSettings.ProteinPercentage, 4)) * 100;
+     var caloriesCircle = new ProgressBar.Circle("#calories-circle", {
+         color: "#2196f3",
+        strokeWidth: 10,
+        trailWidth: 10,
+         duration: 1000,
+         text: {
+             value: caloriesPercentage.toFixed(0) + "%"
+         },
+         step: function(state, bar) {
+             bar.setText((bar.value() * @Model.User.UserSettings.CalorieGoal).toFixed(0) + "kcal");
+         }
+     });
+     caloriesCircle.animate(caloriesPercentage / 100);
 
-    // Set the progress bar value and text for each goal
-    $('.progress-bar[aria-valuemax="100"]').each(function () {
-        var progress = $(this);
-        var percentage = progress.attr('aria-valuenow');
+     var carbohydratesCircle = new ProgressBar.Circle("#carbohydrates-circle", {
+         color: "#2196f3",
+        strokeWidth: 10,
+        trailWidth: 10,
+         duration: 1000,
+         text: {
+             value: carbohydratesPercentage.toFixed(0) + "%"
+         },
+         step: function(state, bar) {
+             bar.setText((bar.value() * @Model.GramsConverter(@Model.User.UserSettings.CarbohydratesPercentage, 4)).toFixed(0) + "g");
+         }
+     });
+     carbohydratesCircle.animate(carbohydratesPercentage / 100);
 
-        // Set progress bar color based on percentage
-        if (percentage >= 100) {
-            progress.removeClass('progress-bar-striped').addClass('bg-success');
-        } else if (percentage >= 75) {
-            progress.removeClass('progress-bar-striped').addClass('bg-info');
-        } else if (percentage >= 50) {
-            progress.removeClass('progress-bar-striped').addClass('bg-warning');
-        } else {
-            progress.removeClass('progress-bar-striped').addClass('bg-danger');
-        }
+     var fatCircle = new ProgressBar.Circle("#fat-circle", {
+         color: "#2196f3",
+        strokeWidth: 10,
+        trailWidth: 10,
+         duration: 1000,
+         text: {
+             value: fatPercentage.toFixed(0) + "%"
+         },
+         step: function(state, bar) {
+             bar.setText((bar.value() * @Model.GramsConverter(@Model.User.UserSettings.FatPercentage, 9)).toFixed(0) + "g");
+         }
+     });
+     fatCircle.animate(fatPercentage / 100);
 
-        // Set progress bar value
-        if (progress.parent().parent().find('.goal-label').text() === 'Calories') {
-            progress.css('width', caloriesPercentage + '%').attr('aria-valuenow', caloriesPercentage);
-        } else if (progress.parent().parent().find('.goal-label').text() === 'Carbohydrates') {
-            progress.css('width', carbohydratesPercentage + '%').attr('aria-valuenow', carbohydratesPercentage);
-        } else if (progress.parent().parent().find('.goal-label').text() === 'Fat') {
-            progress.css('width', fatPercentage + '%').attr('aria-valuenow', fatPercentage);
-        } else if (progress.parent().parent().find('.goal-label').text() === 'Protein') {
-            progress.css('width', proteinPercentage + '%').attr('aria-valuenow', proteinPercentage);
-        }
-
-        // Set progress bar text
-        progress.parent().parent().find('.progress-text').text(percentage + '%');
-    });
-
+     var proteinCircle = new ProgressBar.Circle("#protein-circle", {
+         color: "#2196f3",
+         strokeWidth: 10,
+         trailWidth: 10,
+         duration: 1000,
+         text: {
+             value: proteinPercentage.toFixed(0) + "%"
+         },
+         step: function(state, bar) {
+             bar.setText((bar.value() * @Model.GramsConverter(@Model.User.UserSettings.ProteinPercentage, 4)).toFixed(0) + "g");
+         }
+     });
+     proteinCircle.animate(proteinPercentage / 100);
 </script>
 
+@*<ul>
+    @foreach (var time in Model.RecommendedEatingTimes)
+    {
+        <li>@time.ToShortTimeString()</li>
+    }
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
-<div class="card">
-    <form method="get">
-        <input type="date" name="date" class="form-control" value="@Model.LogDateTime.ToString("yyyy-MM-dd")" onchange="this.form.submit()">
-    </form>
-<p>
-        @Model.MacronutrientData.Sum(b => b.Calories).ToString("0.##")kcal out of @Model.User.UserSettings.CalorieGoal.ToString("0.##"),
-        Carbohydrates: @Model.MacronutrientData.Sum(b => b.Carbohydrates).ToString("0.##")g out of @Model.GramsConverter(@Model.User.UserSettings.CarbohydratesPercentage, 4).ToString("0.##"),
-    Fat: @Model.MacronutrientData.Sum(b => b.Fat).ToString("0.##")g out of @Model.GramsConverter(@Model.User.UserSettings.FatPercentage, 9).ToString("0.##"),
-    Protein: @Model.MacronutrientData.Sum(b => b.Protein).ToString("0.##")g out of @Model.GramsConverter(@Model.User.UserSettings.ProteinPercentage, 4).ToString("0.##")
-</p>
-</div>
-
+</ul>*@
 
 <div class="card">
 <table class="table" style="margin-bottom: -4px;">

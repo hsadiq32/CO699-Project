@@ -3,16 +3,21 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
+using MacroFit.Services;
 
 namespace MacroFit.Pages.Foods
 {
     public class IndexModel : PageModel
     {
         private readonly MacroFit.Data.MacroFitContext _context;
+        private readonly EatingTimeRecommendationService _eatingTimeRecommendationService;
+
 
         public IndexModel(MacroFit.Data.MacroFitContext context)
         {
             _context = context;
+            _eatingTimeRecommendationService = new EatingTimeRecommendationService();
+
         }
 
         public IList<FoodLog> FoodLog { get; set; } = default!;
@@ -20,6 +25,7 @@ namespace MacroFit.Pages.Foods
         public DateTime LogDateTime { get; set; }
         public IList<MacronutrientData> MacronutrientData { get; set; } = new List<MacronutrientData>();
         public  User User { get; set; }
+        public List<DateTime> RecommendedEatingTimes { get; set; }
 
         public async Task<IActionResult> OnGetAsync(DateTime? date)
         {
@@ -60,6 +66,12 @@ namespace MacroFit.Pages.Foods
                 .Select(fl => new MacronutrientData(fl))
                 .ToListAsync();
 
+            // Retrieve user's food logs. Replace with actual data retrieval.
+            var userFoodLogs = new List<FoodLog>();
+
+            // Get recommended eating times
+            RecommendedEatingTimes = _eatingTimeRecommendationService.GetOptimalEatingTimes(userFoodLogs);
+
             return Page();
         }
 
@@ -69,45 +81,4 @@ namespace MacroFit.Pages.Foods
         }
 
     }
-
-    public class MacronutrientData
-    {
-        public int Id { get; set; }
-        public string FoodName { get; set; }
-        public DateTime ConsumptionTime { get; set; }
-        public double Amount { get; set; }
-        public string AmountSymbol { get; set; }
-        public double Calories { get; set; }
-        public double Carbohydrates { get; set; }
-        public double Fat { get; set; }
-        public double Protein { get; set; }
-        public double Sugar { get; set; }
-        public double Sodium { get; set; }
-        public double Fibre { get; set; }
-        public MealType MealType { get; set; }
-
-
-        public MacronutrientData(FoodLog foodLog)
-        {
-            if (foodLog == null)
-            {
-                throw new ArgumentNullException(nameof(foodLog));
-            }
-
-            Id = foodLog.Id;
-            FoodName = foodLog.Food.Name;
-            ConsumptionTime = foodLog.DateTime;
-            Amount = foodLog.Amount * foodLog.Food.FoodUnit.GramsConversion;
-            AmountSymbol = foodLog.Food.FoodUnit.SymbolName;
-            Calories = (foodLog.Food.Calories / 100) * foodLog.Amount;
-            Carbohydrates = (foodLog.Food.Carbohydrates / 100) * foodLog.Amount;
-            Fat = (foodLog.Food.Fat / 100) * foodLog.Amount;
-            Protein = (foodLog.Food.Protein / 100) * foodLog.Amount;
-            Sugar = (foodLog.Food.Sugar / 100) * foodLog.Amount;
-            Sodium = (foodLog.Food.Sodium / 100) * foodLog.Amount;
-            Fibre = (foodLog.Food.Fibre / 100) * foodLog.Amount;
-            MealType = foodLog.Type;
-        }
-    }
-
 }

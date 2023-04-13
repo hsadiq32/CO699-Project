@@ -1,18 +1,3 @@
-:root {
-    --bg-primary-color: #2b2b2b;
-    --bg-secondary-color: #1c1c1c;
-    --bg-tertiary-color: #333333;
-    --primary-color: rgb(184,222,180);
-    --secondary-color: rgb(184,222,180);
-    --tertiary-color: #504a52;
-    --text-primary-color: white;
-    --text-secondary-color: white;
-    --danger-level-1: #6c6c6c;
-    --danger-level-2: #289c32;
-    --danger-level-3: #cf8b33;
-    --danger-level-4: #cf3333;
-}
-
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -45,6 +30,18 @@ body {
     font-family: Inter !important;
     background-color: var(--bg-primary-color) !important;
     color: var(--text-primary-color) !important;
+    overflow: overlay; /* Creates an overlay scrollbar */
+    overflow-y: scroll; /* Fallback solution for browsers that don't support overlay */
+    overflow-x:clip;
+}
+
+::-webkit-scrollbar {
+    width: 15px; /* Set width of scrollbar */
+    background-color: #f5f5f5; /* Set background color of scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #ccc; /* Set color of scrollbar thumb */
 }
 
 .themed-btn {
@@ -90,13 +87,14 @@ body {
     color: var(--text-primary-color);
 }
 
-.dropdown-mc{
-    background-color:var(--bg-primary-color);
-    margin-top:6px !important;
-    border-radius:12px;
-    border-width:2px;
-    border-color:var(--primary-color);
+.dropdown-mc {
+    background-color: var(--bg-primary-color);
+    margin-top: 6px !important;
+    border-radius: 12px;
+    border-width: 2px;
+    border-color: var(--primary-color);
     padding: 8px 4px;
+    box-shadow: 0px 3px 14px #0000008a;
 }
 
 .dropdown-item {
@@ -115,12 +113,34 @@ body {
     background-color: var(--bg-primary-color) !important;
 }
 
+.btn-toolbar {
+    padding: 10px;
+    background: var(--bg-secondary-color);
+    border-radius: 12px;
+    min-height: 76px;
+    margin:0px;
+}
+
+.camera-container {
+    height: 0vh;
+    overflow: hidden;
+    border-radius: 12px;
+    transition: height 1s;
+    margin-top: 22px;
+}
+
+.card-focused {
+    padding: 10px 20px;
+    background: var(--bg-secondary-color);
+    border-radius: 12px;
+    min-height: 76px;
+}
+
 .form-control {
     background-color: var(--bg-primary-color);
     border-color: var(--bg-tertiary-color);
     border-radius: 12px;
     border-width: 5px;
-
     color: var(--text-primary-color);
 }
 
@@ -189,6 +209,36 @@ tbody tr{
     transition: width 1s;
     min-height: calc(100vh - 100px);
     padding-top: 100px;
+}
+
+.macro-container {
+    vertical-align: middle;
+    transition: padding 1s,border-radius 1s;
+    border-radius: 12px;
+    width: 25%;
+    margin-right: 4px;
+    margin-left: 4px;
+}
+
+.macro-value {
+    width: 100%;
+    margin: 0px;
+    font-weight: bold;
+    height: 100%;
+    padding-right: 8px;
+    padding-left: 8px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.macro-name {
+    margin-bottom: 0px;
+    padding-top: 0px;
+    padding-bottom: 4px;
+    width: 100%;
+    border-radius: 6px;
+    padding-left: 2px;
+    padding-right: 2px;
 }
 
 .nutrition-box {
@@ -330,6 +380,8 @@ a:active, a:hover, a:link, a:visited {
     transition: 1s;
     max-width: 300px
 }
+
+
 
 @media only screen and (min-width:500px) {
     .dnav-button-wrapper {

@@ -45,14 +45,14 @@ namespace MacroFit.Models
     public enum HungerLevel
     {
         [Display(Name = "Not Hungry")]
-        NotHungry,
+        NotHungry = 0,
         [Display(Name = "Slightly Hungry")]
-        SlightlyHungry,
+        SlightlyHungry = 1,
         [Display(Name = "Moderately Hungry")]
-        ModeratelyHungry,
+        ModeratelyHungry = 2,
         [Display(Name = "Very Hungry")]
-        VeryHungry,
+        VeryHungry = 3,
         [Display(Name = "Extremely Hungry")]
-        ExtremelyHungry
+        ExtremelyHungry = 4
     }
 }

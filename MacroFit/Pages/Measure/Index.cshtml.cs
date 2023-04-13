@@ -24,6 +24,8 @@ namespace MacroFit.Pages.Measure
 
         public IList<UserProgress> UserProgress { get; set; } = default!;
 
+        public User User { get; set; }
+
         public async Task<IActionResult> OnGetAsync()
         {
             if (_context.UserProgress != null)
@@ -33,16 +35,17 @@ namespace MacroFit.Pages.Measure
                 {
                     return NotFound();
                 }
-                var user = await _context.Accounts.FirstOrDefaultAsync(u => u.Id == userId);
-                if (user == null)
+                User = await _context.Accounts.FirstOrDefaultAsync(u => u.Id == userId);
+                if (User == null)
                 {
                     return NotFound();
                 }
 
                 UserProgress = await _context.UserProgress
-                    .Where(us => us.Account == user)
+                    .Where(us => us.Account == User)
                     .ToListAsync();
 
+                User.DateOfBirth = User.DateOfBirth.Date;
             }
             return Page();
         }

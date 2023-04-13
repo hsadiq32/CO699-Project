@@ -47,6 +47,7 @@ namespace MacroFit.API
                     {
                         Id = existingFood.Id,
                         Name = existingFood.Name,
+                        Calories = existingFood.Calories,
                         Carbohydrates = existingFood.Carbohydrates,
                         Protein = existingFood.Protein,
                         Fat = existingFood.Fat,
@@ -160,6 +161,7 @@ namespace MacroFit.API
         {
             public int Id { get; set; }
             public string Name { get; set; }
+            public double Calories { get; set; }
             public double Carbohydrates { get; set; }
             public double Protein { get; set; }
             public double Fat { get; set; }
