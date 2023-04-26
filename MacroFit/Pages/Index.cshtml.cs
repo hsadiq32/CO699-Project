@@ -27,7 +27,6 @@ namespace MacroFit.Pages
 
         public IList<FoodLog> FoodLog { get; set; } = default!;
         public DateTime SelectedDate { get; set; } = DateTime.Now.Date;
-        public DateTime LogDateTime { get; set; }
         public IList<MacronutrientData> MacronutrientData { get; set; } = new List<MacronutrientData>();
         public User User { get; set; }
         public List<DateTime> RecommendedEatingTimes { get; set; }
@@ -42,20 +41,17 @@ namespace MacroFit.Pages
                     .FirstOrDefaultAsync(u => u.Id == userId);
                 if (User != null)
                 {
+                    LoginCheck = true;
                     if (date.HasValue)
                     {
                         SelectedDate = date.Value.Date;
                     }
-                    DateTime currentTime = DateTime.Now;
-                    LogDateTime = new DateTime(SelectedDate.Year, SelectedDate.Month, SelectedDate.Day,
-                                                         currentTime.Hour, currentTime.Minute, currentTime.Second);
 
                     FoodLog = await _context.FoodLogs
                         .Include(fl => fl.Food)
                             .ThenInclude(f => f.FoodUnit)
                         .Where(fl => fl.Account == User && fl.DateTime.Date == SelectedDate)
                         .ToListAsync();
-
 
                     MacronutrientData = await _context.FoodLogs
                         .Include(fl => fl.Food)
@@ -64,21 +60,22 @@ namespace MacroFit.Pages
                         .Select(fl => new MacronutrientData(fl))
                         .ToListAsync();
 
+
                     // Retrieve user's food logs. Replace with actual data retrieval.
                     var userFoodLogs = new List<FoodLog>();
 
                     // Get recommended eating times
                     RecommendedEatingTimes = _eatingTimeRecommendationService.GetOptimalEatingTimes(userFoodLogs);
-                    LoginCheck = true;
+
                 }
             }
 
             return Page();
         }
 
-        public double GramsConverter(double value, double conversion)
+        public double GramsConverter(double value, double percentage, double conversion)
         {
-            return ((User.UserSettings.CalorieGoal / 100) * value) / conversion;
+            return (value / 100 * percentage)/ conversion;
         }
 
     }

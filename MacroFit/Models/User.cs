@@ -1,17 +1,15 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace MacroFit.Models
 {
-    public class User : IdentityUser // Singular name for entity class
+    public class User : IdentityUser // Child of IdentityUser
     {
-
-        [Required(ErrorMessage = "First name is required")] // This attribute indicates that the property is required and specifies the error message
+        [Required(ErrorMessage = "First name is required")]
         [Display(Name = "First Name")]
-        [StringLength(50, ErrorMessage = "First name cannot be longer than 50 characters")] // This attribute limits the length of the string and specifies the error message
-        [RegularExpression(@"^[A-Za-z]+$", ErrorMessage = "First name can only contain alphabetical characters")] // This attribute validates that the string matches a regular expression and specifies the error message
-        public string FirstName { get; set; } // Split name to first and last name variables
+        [StringLength(50, ErrorMessage = "First name cannot be longer than 50 characters")]
+        [RegularExpression(@"^[A-Za-z]+$", ErrorMessage = "First name can only contain alphabetical characters")]
+        public string FirstName { get; set; }
 
         [Required(ErrorMessage = "Last name is required")]
         [Display(Name = "Last Name")]
@@ -22,7 +20,7 @@ namespace MacroFit.Models
         [Required(ErrorMessage = "Date of birth is required")]
         [Display(Name = "Date of Birth")]
         [DataType(DataType.Date)]
-        public DateTime DateOfBirth { get; set; } // DateTime type for date
+        public DateTime DateOfBirth { get; set; }
 
         [Required(ErrorMessage = "Gender is required")]
         [Display(Name = "Gender")]
@@ -31,8 +29,7 @@ namespace MacroFit.Models
         public string? UserData { get; set; }
 
         // Navigation properties
-        public UserSettings? UserSettings { get; set; }  // Singular name for navigation property 
-
+        public UserSettings? UserSettings { get; set; }
     }
 
     public enum Gender

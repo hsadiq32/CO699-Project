@@ -272,15 +272,6 @@ C:\Users\Haroon\Documents\GitHub\CO699-Project\New\MacroFit\bin\Debug\net6.0\run
 C:\Users\Haroon\Documents\GitHub\CO699-Project\New\MacroFit\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
 C:\Users\Haroon\Documents\GitHub\CO699-Project\New\MacroFit\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Haroon\Documents\GitHub\CO699-Project\New\MacroFit\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
-C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\obj\Debug\net6.0\MacroFit.csproj.AssemblyReference.cache
-C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\obj\Debug\net6.0\MacroFit.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\obj\Debug\net6.0\MacroFit.AssemblyInfoInputs.cache
-C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\obj\Debug\net6.0\MacroFit.AssemblyInfo.cs
-C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\obj\Debug\net6.0\MacroFit.csproj.CoreCompileInputs.cache
-C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\obj\Debug\net6.0\MacroFit.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\obj\Debug\net6.0\MacroFit.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\obj\Debug\net6.0\MacroFit.RazorAssemblyInfo.cache
-C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\obj\Debug\net6.0\MacroFit.RazorAssemblyInfo.cs
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\appsettings.json
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\MacroFit.staticwebassets.runtime.json
@@ -289,7 +280,6 @@ C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\MacroFi
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\MacroFit.runtimeconfig.json
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\MacroFit.dll
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\MacroFit.pdb
-C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\FuzzySharp.dll
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\Humanizer.dll
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\MessagePack.dll
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\MessagePack.Annotations.dll
@@ -368,7 +358,6 @@ C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\System.
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\System.Security.Permissions.dll
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\System.Windows.Extensions.dll
-C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\zxing.dll
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\cs\Microsoft.CodeAnalysis.resources.dll
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\de\Microsoft.CodeAnalysis.resources.dll
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\es\Microsoft.CodeAnalysis.resources.dll
@@ -537,6 +526,15 @@ C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\runtime
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\obj\Debug\net6.0\MacroFit.csproj.AssemblyReference.cache
+C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\obj\Debug\net6.0\MacroFit.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\obj\Debug\net6.0\MacroFit.AssemblyInfoInputs.cache
+C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\obj\Debug\net6.0\MacroFit.AssemblyInfo.cs
+C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\obj\Debug\net6.0\MacroFit.csproj.CoreCompileInputs.cache
+C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\obj\Debug\net6.0\MacroFit.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\obj\Debug\net6.0\MacroFit.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\obj\Debug\net6.0\MacroFit.RazorAssemblyInfo.cache
+C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\obj\Debug\net6.0\MacroFit.RazorAssemblyInfo.cs
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\obj\Debug\net6.0\staticwebassets\msbuild.MacroFit.Microsoft.AspNetCore.StaticWebAssets.props
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\obj\Debug\net6.0\staticwebassets\msbuild.build.MacroFit.props
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.MacroFit.props
@@ -553,3 +551,4 @@ C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\obj\Debug\net6.0\refint\
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\obj\Debug\net6.0\MacroFit.pdb
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\obj\Debug\net6.0\MacroFit.genruntimeconfig.cache
 C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\obj\Debug\net6.0\ref\MacroFit.dll
+C:\Users\Haroon\Documents\GitHub\CO699-Project\MacroFit\bin\Debug\net6.0\libman.json

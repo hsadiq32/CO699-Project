@@ -5,6 +5,8 @@ VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MacroFit", "MacroFit.csproj", "{588196AD-B7B3-4BD2-885A-D5E8170B8AB1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MacroFit.Tests", "..\MacroFit.Tests\MacroFit.Tests.csproj", "{DE5B3675-6D6F-44B1-BCE6-9649E2106E89}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{588196AD-B7B3-4BD2-885A-D5E8170B8AB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{588196AD-B7B3-4BD2-885A-D5E8170B8AB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{588196AD-B7B3-4BD2-885A-D5E8170B8AB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE5B3675-6D6F-44B1-BCE6-9649E2106E89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE5B3675-6D6F-44B1-BCE6-9649E2106E89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE5B3675-6D6F-44B1-BCE6-9649E2106E89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE5B3675-6D6F-44B1-BCE6-9649E2106E89}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -100,8 +100,8 @@ function displayProductDetails(productDetails) {
         macroInfo.forEach(macro => {
             const macroContainer = document.createElement('div');
             macroContainer.className = "d-flex align-items-start flex-column macro-container";
-            macroContainer.style.color = "var(--text-primary-color)";
-            macroContainer.style.border = "2px solid var(--text-primary-color)";
+            macroContainer.style.color = "var(--primary-color)";
+            macroContainer.style.border = "2px solid var(--primary-color)";
             macrosDiv.appendChild(macroContainer);
 
             const macroValue = document.createElement('p');
@@ -190,9 +190,14 @@ function displayProductDetails(productDetails) {
 
 function displayNoItemsPrompt() {
     const productsContainer = document.getElementById('products');
-    const noItemsPrompt = document.createElement('p');
+    const noItemsPrompt = document.createElement('div');
+    noItemsPrompt.style.marginTop = '30px';
+    noItemsPrompt.style.color = 'var(--text-primary-color)';
+    noItemsPrompt.style.opacity = '0.5';
+    noItemsPrompt.style.textAlign = 'center';
     noItemsPrompt.id = 'no-items-prompt';
-    noItemsPrompt.textContent = 'No food items scanned yet.';
+    noItemsPrompt.textContent = "Search or scan some food products";
+
     productsContainer.appendChild(noItemsPrompt);
 }
 
@@ -253,7 +258,7 @@ cameraToggle.addEventListener('click', () => {
     if (!isScannerRunning) {
         startBarcodeScanner();
         isScannerRunning = true;
-    } else {nutella
+    } else {
         html5QrCode.stop();
         isScannerRunning = false;
     }

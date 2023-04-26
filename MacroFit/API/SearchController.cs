@@ -99,6 +99,10 @@ namespace MacroFit.API
         [HttpGet("barcode/{code}")]
         public async Task<IActionResult> GetAsync(string code)
         {
+            if (string.IsNullOrEmpty(code))
+            {
+                return BadRequest("Invalid barcode parameter");
+            }
             // Check if the given barcode exists in the Food database
             var existingFood = await _context.Foods
                 .Include(f => f.FoodUnit)
@@ -238,7 +242,7 @@ namespace MacroFit.API
             return inputString;
         }
 
-        private class FoodResponse
+        public class FoodResponse
         {
             public int Status { get; set; } = 0;
             public string Message { get; set; } = "Barcode Found";
@@ -246,7 +250,7 @@ namespace MacroFit.API
             public FoodResponseDetails FoodResponseDetails { get; set; }
         }
 
-        private class FoodResponseDetails
+        public class FoodResponseDetails
         {
             public int Id { get; set; }
             public string Name { get; set; }

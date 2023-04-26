@@ -19,7 +19,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 
 builder.Services.AddRazorPages();
 builder.Services.AddControllers();
-builder.Services.AddHttpClient<ScanController>();
+builder.Services.AddHttpClient<SearchController>();
 
 var app = builder.Build();
 

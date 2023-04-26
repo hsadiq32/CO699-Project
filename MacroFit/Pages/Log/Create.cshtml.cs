@@ -128,12 +128,20 @@ namespace MacroFit.Pages.Log
                 Food.FoodUnit = foodUnit;
             }
 
-
             FoodLog.Food = Food;
             _context.FoodLogs.Add(FoodLog);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            if (FoodLog.DateTime.Date != DateTime.Now.Date)
+            {
+                string dateParameter = FoodLog.DateTime.ToString("yyyy-MM-dd");
+                return RedirectToPage("/Foods/Index", new { date = dateParameter });
+
+            }
+            else
+            {
+                return RedirectToPage("/Foods/Index");
+            }
         }
 
         public MealType typeParser(string type, DateTime dateTime)
