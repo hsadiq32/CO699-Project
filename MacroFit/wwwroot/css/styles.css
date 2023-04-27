@@ -129,12 +129,7 @@ body {
     margin-top: 22px;
 }
 
-.card-focused {
-    padding: 10px 20px;
-    background: var(--bg-secondary-color);
-    border-radius: 12px;
-    min-height: 76px;
-}
+
 
 .form-control {
     background-color: var(--bg-primary-color);
@@ -185,12 +180,19 @@ tbody tr{
 .table > :not(caption) > * > * {
     border-bottom-width: 4px;
 }
-    .card {
+.card {
     background-color: var(--bg-primary-color);
     border-color: var(--bg-tertiary-color);
     border-radius: 12px;
     border-width: 5px;
     margin: 20px 0px;
+}
+
+.card-focused {
+    padding: 10px 20px;
+    background: var(--bg-secondary-color);
+    border-radius: 12px;
+    min-height: 76px;
 }
 
 .truncate {
@@ -295,9 +297,6 @@ tbody tr{
     right: 0
 }
 
-.progress{
-
-}
 
 .dnav {
     background-color: var(--bg-secondary-color);

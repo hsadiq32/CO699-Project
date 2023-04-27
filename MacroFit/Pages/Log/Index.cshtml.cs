@@ -40,16 +40,12 @@ namespace MacroFit.Pages.Log
             // Since this is a read-only query, AsNoTracking method is used to improve performance by telling EF that it doesn't need to track changes to the returned entities.
             RecentFoods = await _context.FoodLogs
                 .Include(f => f.Food)
-                .AsNoTracking()
                 .Where(f => f.Account == User)
                 .OrderBy(f => f.DateTime)
                 .GroupBy(f => f.Food.Id)
                 .Select(g => g.First())
                 .Take(15)
                 .ToListAsync();
-
-            RecentFoods = null;
-
             return Page();
         }
     }
